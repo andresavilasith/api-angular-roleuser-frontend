@@ -1,0 +1,276 @@
+/* Basic styling */
+:root{
+    --softOrange:#ffae00;
+    --gray: #303335;
+    --weightDefault:700;
+  }
+  
+  * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    body {
+      font-family: sans-serif;
+      font-size: 16px;
+    }
+
+
+/* ------------------ Slider */
+
+
+
+@media only screen and (max-width: 996px) {
+    .info-slider{
+        font-size: 16px;
+        bottom: 7em;
+        left: 4em;
+    }
+    
+    .slideshow-container {
+        
+        height: 300px;
+    }
+    
+    .img{
+        height: 300px;
+    }
+    
+    .prev, .next {
+        top: 50%;
+    }
+    
+}
+
+@media only screen and (max-width: 858px) {
+    .info-slider {
+        width: 66%;
+        left: 9em;
+    }
+}
+
+@media only screen and (max-width: 766px) {
+    .info-slider{
+        flex-direction: column;
+        left: 3em;
+        flex-direction: column;
+        left: 9em;
+        width: 64%;
+    }
+    
+    .btn-access-slider{
+        margin: 1em;
+    }
+    
+}
+
+@media only screen and (max-width: 617px) {
+    .info-slider{
+        left: 4em;
+        width: 80%;
+    }
+
+}
+
+
+@media only screen and (max-width: 606px) {
+    .info-slider {
+        left: 9em;
+        width: 54%;
+    }
+}
+
+
+@media only screen and (max-width: 558px) {
+    .info-slider {
+        left: 13em;
+        width: 31%;
+    }
+}
+
+
+@media only screen and (max-width: 557px) {
+    .info-slider {
+        left: 3em;
+        width: 75%;
+    }
+    .text-slider{
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 300px) {
+    .prev, .next{font-size: 11px}
+}
+
+
+/* ---------------- Articulos pagina de inicio */
+@media only screen and (max-width: 725px) {
+    .content{
+        flex-grow: 1;
+    }
+    .article-item{
+        flex-wrap: wrap;
+    }
+    #search{
+        justify-content: center;
+    }
+}
+
+@media only screen and (max-width: 387px) {
+    #search>form{
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    #searchValue{
+        margin-bottom: 1em;
+    }
+    
+}
+
+/* ---------------- ABOUT */
+@media only screen and (max-width: 862px) {
+    .team-container{
+        width: 100%;
+    }   
+    .form-users{
+        padding: 1em;
+    }
+    
+    .form-users>h2{
+        font-size: 1em;
+
+    }
+}
+
+
+
+
+/* -------------------- Contact */
+@media only screen and (max-width: 1246px) {
+    .container {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        
+    }
+      
+   
+}
+
+
+@media screen and (max-width: 708px) {
+   
+  
+    table caption {
+      font-size: 1.3em;
+    }
+
+    .title-table{
+        display: none;
+    }
+    
+    table thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+
+    table tbody{
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+        margin: 1em;
+    }
+    
+    table tr {
+      border-bottom: 3px solid #ddd;
+      display: flex;
+      flex-flow: column;
+      margin-bottom: .625em;
+      width: 18em;
+    }
+    
+    td {
+      border-bottom: 1px solid #ddd;
+      display: flex;
+      text-align: center;
+      font-size: .8em;
+      line-height: 1em;
+      flex-flow: column;
+      line-height: 1.5em;
+    }
+    
+    table td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    
+    table td:last-child {
+      border-bottom: 0;
+    }
+  }
+
+
+@media only screen and (max-width: 590px) {
+
+    
+
+#searchValue {
+    width: auto;
+}
+    .form-users{
+        padding: 2em;
+}
+
+.form-users>h2{
+    justify-content: center;
+}
+.label-title-form{
+    
+    align-self: center;
+}
+
+
+.field-form, .form-submit{
+    align-self: center;
+    width: 16em;
+}
+
+
+
+.contact-link>img {
+    width: 2.5em;
+    height: 2.5em;
+}
+
+
+
+.contact-link{
+    margin: 1em;
+  }
+}
+
+@media only screen and (max-width: 312px) {
+    
+.article-item{
+    padding: .5em;
+}
+.image-article>img {
+    display: none;
+}
+    
+    
+}

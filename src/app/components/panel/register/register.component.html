@@ -1,0 +1,32 @@
+<div class="container">
+    <form action="#" #registerForm="ngForm" (ngSubmit)=onSubmit(registerForm) class="form-users">
+
+        <label for="name" class="label-title-form">Nombre:</label>
+        <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" placeholder="nombre" class="field-form"
+            required>
+
+        <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+            El nombre no es valido
+        </small>
+
+        <label for="email" class="label-title-form">Email:</label>
+        <input type="text" name="email" #email="ngModel" [(ngModel)]="user.email" placeholder="email" class="field-form"
+            required>
+
+        <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+            El email no es valido
+        </small>
+
+
+        <label for="password" class="label-title-form">Contrasena:</label>
+        <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" placeholder="password"
+            class="field-form" required>
+
+        <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">
+            La Contrasena no es valido
+        </small>
+
+
+        <input type="submit" value="Registrarse" class="login-submit" [disabled]="registerForm.invalid">
+    </form>
+</div>

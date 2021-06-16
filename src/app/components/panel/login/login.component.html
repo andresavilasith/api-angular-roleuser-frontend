@@ -1,0 +1,20 @@
+<div class="container">
+    <form class="form-users" #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+        <div *ngIf= "message !='undefined'">{{message}}</div>
+
+        <label class="label-title" for="email">Email:</label>
+        <input type="email" class="field-form" placeholder="Su correo electronico" name="email" #email="ngModel" [(ngModel)]="user.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+
+        <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+            El email no es valido
+        </small>
+        <label class="label-title" for="password">Conttrasena:</label>
+        <input type="password" class="field-form" name="password" #password="ngModel" [(ngModel)]="user.password"  placeholder="Su contrasena" required>
+
+        <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">
+            La contrasena no es valido
+        </small>
+
+        <input type="submit" value="Iniciar sesion" class="login-submit" [disabled]="loginForm.invalid">
+    </form>
+</div>
