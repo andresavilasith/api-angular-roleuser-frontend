@@ -7,33 +7,31 @@ import { Router } from '@angular/router';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  providers: [UserService]
+  providers:[UserService]
 })
 export class AppComponent implements OnInit {
   title = 'roleuserfrontend';
   public loggedIn: any;
+  public token: any;
 
   constructor(
     private _userService: UserService,
     private _router: Router
   ) {
-
+    this.token = this._userService.getToken()
   }
 
   ngOnInit(): void {
     this._userService.isUserLogged().subscribe(
       result => {
-
         this.loggedIn = result
 
-        
+
       }
       , error => {
         console.log(error);
+        this._router.navigate(['/login'])
 
       })
-
-
-
   }
 }

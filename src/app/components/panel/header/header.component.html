@@ -2,8 +2,7 @@
     <nav>
         <div class="menu" id="menu-panel">
 
-
-            <div class="item has-submenu" [ngStyle]="user ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Usuarios
                 </a>
@@ -14,7 +13,7 @@
             </div>
 
 
-            <div class="item has-submenu" [ngStyle]="user ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Roles
                 </a>
@@ -26,7 +25,7 @@
             </div>
 
 
-            <div class="item has-submenu" [ngStyle]="user ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Categorias
                 </a>
@@ -38,7 +37,7 @@
             </div>
 
 
-            <div class="item has-submenu" [ngStyle]="user ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Permisos
                 </a>
@@ -52,13 +51,13 @@
 
             <div class="profileSession">
 
-                <a class="item social" [routerLink]="['login']" *ngIf="!user">Log In</a>
-                <a class="item social secondary" [routerLink]="['register']" *ngIf="!user">Sign Up</a>
+                <a class="item social" [routerLink]="['login']" *ngIf="!loggedIn">Log In</a>
+                <a class="item social secondary" [routerLink]="['register']" *ngIf="!loggedIn">Sign Up</a>
 
 
 
                 <div class="item has-submenu submenu-profile"
-                    [ngStyle]="user ? {'display': 'flex'} : {'display' : 'none'}">
+                    [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
 
 
                     <a class="linkuser">

@@ -2,26 +2,25 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
 import { Router } from '@angular/router';
-import { global } from "../../../services/global.service";
-
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'],
-  providers: [UserService]
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
   public message: any;
   public user: User;
   public user_data: any;
+  public token: any;
 
   constructor(
     private _userService: UserService,
     private _router: Router
   ) {
     this.user = new User(1, '', '', '', '')
+
   }
 
   ngOnInit(): void {
@@ -45,11 +44,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this._userService.signup(this.user_data).subscribe(
       result => {
-        this._userService.login(result.access_token);
+        localStorage.setItem('token',result.access_token);
+        
         this._router.navigate(['/'])
+        
       },
       error => {
         this._router.navigate(['/login'])
+        this._userService.logout();
         console.log(error);
 
       }

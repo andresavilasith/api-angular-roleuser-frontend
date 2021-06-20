@@ -32,40 +32,39 @@ export class UserService {
         return this._http.post(this.url_auth_token, user);
     }
 
-    login(token:any){
-        localStorage.setItem('token',token);
-        this.loggedChanged.next(true);
-        
-    }
-
     getToken() {
         this.token = 'Bearer ' + localStorage.getItem('token');
         return this.token;
     }
-
+    
+    logged(): void {
+        this.loggedChanged.next(true);
+      }
+    
+    
     logout() {
-        this.loggedChanged.next(false);
-        localStorage.removeItem('token');
+        localStorage.removeItem('token')
+        return this.loggedChanged.next(false);
     }
 
     isUserLogged(): Subject<boolean> {
         return this.loggedChanged;
     }
-
+    
     setMessage(message: any) {
         sessionStorage.setItem('message', message);
     }
-
+    
     getMessage() {
         this.message = sessionStorage.getItem('message')
         return this.message
 
     }
-
-
+    
+    
     userData(token: any): Observable<any> {
         var headers = new HttpHeaders().set('Authorization', token)
-
+  
         return this._http.get(global.urlApiPanel + '/user/identified', { headers: headers })
     }
 
