@@ -1,1 +1,27 @@
-<p>users works!</p>
+<div class="table-content">
+
+    <table>
+        <tbody>
+
+            <tr class="title-table">
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Role(s)</th>
+                <th scope="col" colspan="3">Actions</th>
+            </tr>
+            <tr *ngFor="let user of users">
+
+                <td data-label="Id">{{user.id}}</td>
+                <td data-label="Name">{{user.name}}</td>
+                <td data-label="Email">{{user.email}}</td>
+                <td data-label="Role(s)" *ngFor="let role of user.roles">{{role.name}}</td>
+                <td><button class="btn-table btn-table-show">Show</button></td>
+                <td><button class="btn-table btn-table-edit">Edit</button></td>
+                <td><button class="btn-table btn-table-delete">Delete</button></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+</div>

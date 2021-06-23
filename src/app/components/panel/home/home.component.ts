@@ -24,8 +24,19 @@ export class HomeComponent implements OnInit {
     
     this.user = this._userService.userData(this.token).subscribe(
       result=>{
-        this._userService.logged();
         this.user=result
+        this._userService.userData(this.token).subscribe(
+          resultUser=>{
+            localStorage.setItem('currentUser',JSON.stringify(resultUser));
+
+
+            this._userService.logged(this._userService.getCurrentUser());
+            
+          },
+          error=>{
+    
+          }
+        );
       },
       error=>{
         this._userService.logout()
@@ -35,6 +46,8 @@ export class HomeComponent implements OnInit {
         
       }
     )
+
+   
   }
 
   
