@@ -1,1 +1,28 @@
-<p>edit-user works!</p>
+<div class="container">
+    <form #editUserForm="ngForm" (ngSubmit)="onSubmit(editUserForm)" class="form-users">
+        <h2>{{title}}</h2>
+
+        <label for="name" class="label-title-form">Nombre:</label>
+        <input type="text" placeholder="nombre" name="name"  #name="ngModel" [(ngModel)]="user.name" class="field-form" required>
+
+
+
+        <label class="label-title-form" for="email">Email:</label>
+        <input type="email" class="field-form" placeholder="Su correo electronico"  #email="ngModel" [(ngModel)]="user.email" required name="email">
+
+
+
+
+        <label class="label-title-form" for="role">Rol:</label>
+        <select class="field-form" name="roles" #roles="ngModel" [(ngModel)]="user.roles" [(ngModel)]="role_user">
+            <option *ngFor="let role of roles_info" [ngValue]="role.id">
+                {{role.name}}
+            </option>
+        </select>
+
+        <input type="submit" value="Actualizar" class="form-submit" [disabled]="editUserForm.invalid">
+
+    </form>
+
+
+</div>

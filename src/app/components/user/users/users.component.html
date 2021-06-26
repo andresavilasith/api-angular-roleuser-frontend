@@ -15,10 +15,16 @@
                 <td data-label="Id">{{user.id}}</td>
                 <td data-label="Name">{{user.name}}</td>
                 <td data-label="Email">{{user.email}}</td>
-                <td data-label="Role(s)" *ngFor="let role of user.roles">{{role.name}}</td>
-                <td><button class="btn-table btn-table-show">Show</button></td>
-                <td><button class="btn-table btn-table-edit">Edit</button></td>
-                <td><button class="btn-table btn-table-delete">Delete</button></td>
+                <ng-container *ngFor="let role of user.roles">
+
+                    <td data-label="Role(s)">{{role.name}}</td>
+
+                </ng-container>
+                <td><button class="btn-table btn-table-show" [routerLink]="['/user',user.id]">Show</button></td>
+                <td><button class="btn-table btn-table-edit" [routerLink]="['/user-edit',user.id]">Edit</button></td>
+                <td><button *ngIf="user" (click)="deleteUser(user.id)"
+                        class="btn-table btn-table-delete">Eliminar</button></td>
+
             </tr>
 
         </tbody>

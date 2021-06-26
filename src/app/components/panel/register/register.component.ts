@@ -18,7 +18,7 @@ export class RegisterComponent implements OnInit {
     private _router:Router
   ) {
     this.page_title = 'User Register'
-    this.user = new User(1, '', '', '', '');
+    this.user = new User(1, '', '', '', '',2);
   }
 
   ngOnInit(): void {

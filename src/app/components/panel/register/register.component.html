@@ -1,5 +1,5 @@
 <div class="container">
-    <form action="#" #registerForm="ngForm" (ngSubmit)=onSubmit(registerForm) class="form-users">
+    <form action="#" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm) "class="form-users">
 
         <label for="name" class="label-title-form">Nombre:</label>
         <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" placeholder="nombre" class="field-form"

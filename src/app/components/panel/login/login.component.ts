@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     private _userService: UserService,
     private _router: Router
   ) {
-    this.user = new User(1, '', '', '', '')
+    this.user = new User(1, '', '', '', '',2)
 
   }
 

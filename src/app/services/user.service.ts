@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 export class UserService {
     public url_auth: string;
     public url_auth_token: string;
+    public url_user_panel: string;
     public token: any;
     public user: any;
     public user_storage: any;
@@ -24,26 +25,55 @@ export class UserService {
 
         this.url_auth = global.urlAuth;
         this.url_auth_token = global.urlAuthToken;
+        this.url_user_panel = global.urlApiPanel;
     }
 
-    
+
     /* =========== Peticiones al Backend ========= */
-    
+
     userData(token: any): Observable<any> {
         var headers = new HttpHeaders().set('Authorization', token)
 
-        return this._http.get(global.urlApiPanel + '/user/identified', { headers: headers })
-    }
-    
-    
-    getUsers(token:any){
-        var headers = new HttpHeaders().set('Authorization', token)
-    
-        return this._http.get(global.urlApiPanel + '/user', { headers: headers })
-        
+        return this._http.get(this.url_user_panel + '/user/identified', { headers: headers })
     }
 
-    
+
+    getUsers(token: any) {
+        var headers = new HttpHeaders().set('Authorization', token)
+
+        return this._http.get(this.url_user_panel + '/user', { headers: headers })
+
+    }
+
+    getUser(id: any, token: any) {
+        var headers = new HttpHeaders().set('Authorization', token)
+
+        return this._http.get(this.url_user_panel + '/user/' + id, { headers: headers });
+    }
+
+
+    editUser(id: any, token: any) {
+
+        var headers = new HttpHeaders().set('Authorization', token)
+
+        return this._http.get(this.url_user_panel + '/user/' + id + '/edit', { headers: headers });
+    }
+
+    updateUser(id: any, user: any, token: any): Observable<any> {
+
+        var headers = new HttpHeaders().set('Authorization', token);
+
+        return this._http.put(this.url_user_panel + '/user/' + id, user, { headers: headers });
+    }
+
+    deleteUser(id: any, token: any): Observable<any> {
+        var headers = new HttpHeaders().set('Authorization', token);
+
+        return this._http.delete(this.url_user_panel + '/user/' + id, { headers: headers })
+
+    }
+
+
     /* =========== Autenticacion ============ */
     register(user: any): Observable<any> {
         return this._http.post(this.url_auth + '/register', user);
@@ -53,26 +83,26 @@ export class UserService {
         return this._http.post(this.url_auth_token, user);
     }
 
-    
+
     isUserCurrent(): Subject<any> {
         return this.currentUser;
     }
 
 
-    
+
     getToken() {
         this.token = 'Bearer ' + localStorage.getItem('token');
         return this.token;
     }
 
-    logged(user:any): void {
+    logged(user: any): void {
         this.loggedChanged.next(true);
         this.currentUser.next(user);
     }
 
 
-    getCurrentUser(){
-        this.user_storage= localStorage.getItem('currentUser');
+    getCurrentUser() {
+        this.user_storage = localStorage.getItem('currentUser');
 
         return JSON.parse(this.user_storage)
     }

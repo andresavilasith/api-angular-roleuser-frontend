@@ -1,1 +1,27 @@
-<p>user works!</p>
+<div class="container">
+    <form action="#" method="post" class="form-users">
+        <h2>{{title}}</h2>
+
+        <label for="name" class="label-title-form">Nombre:</label>
+        <input type="text" placeholder="nombre" name="name" class="field-form" required value="{{user?.name}}" disabled>
+
+
+
+        <label class="label-title-form" for="email">Email:</label>
+        <input type="email" class="field-form" placeholder="Su correo electronico" required name="email"
+            value="{{user?.email}}" disabled>
+
+
+
+
+        <label class="label-title-form" for="role">Rol:</label>
+        <select class="field-form">
+            <option *ngFor="let role of roles" [selected]="role?.id==role_user" value="{{role?.id}}" disabled>
+                {{role?.name}}
+            </option>
+        </select>
+
+    </form>
+
+
+</div>
