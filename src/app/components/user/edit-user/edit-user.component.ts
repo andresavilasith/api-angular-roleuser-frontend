@@ -14,7 +14,6 @@ export class EditUserComponent implements OnInit {
   public token: any
   public user_info: any
   public user: User
-  public info: any
   public title: any
   public roles_info: any
   public role_user: any
@@ -28,7 +27,7 @@ export class EditUserComponent implements OnInit {
     this.token = this._userService.getToken();
     this.title = "Datos de usuario";
 
-    this.user = new User(1, '', '', '', '','')
+    this.user = new User(1, '', '', '', '', '')
 
 
   }
@@ -41,38 +40,58 @@ export class EditUserComponent implements OnInit {
     this._route.params.subscribe(
       params => {
         this._userService.editUser(params.id, this.token).subscribe(
-          result => {
-            this._userService.logged(this.current_user)
-            this.info = result
+          response => {
+
+            this.modifyCurrentUser(response.user);
             
-            this.user = this.info.user
+            
+            this._userService.logged(this.current_user)
             
 
-            this.roles_info = this.info.roles
-            
-            this.role_user = this.info.role_user[0]
-            
+            //Todos los roles
+            this.roles_info = response.roles
+
+            //Rol asignado al usuario
+            this.role_user = response.role_user[0]
+
           }
         )
       }
-      )
-    }
-    
-    onSubmit(form: any) {
-      
-      this._userService.updateUser(this.user.id,this.user, this.token).subscribe(
-        result => {
-        this._router.navigate(['user']);
+    )
+  }
+
+  onSubmit(form: any) {
+
+    //Asignacion de role si no hay cambios
+    this.user.roles = form.value.roles
+
+    this._userService.updateUser(this.user.id, this.user, this.token).subscribe(
+      response => {
+
         
+        this.modifyCurrentUser(response.user);
+
+        this._router.navigate(['user']);
+
+
       },
       error => {
         console.log(error);
-        this._router.navigate(['user-edit/'+this.user.id]);
-        
+        this._router.navigate(['user-edit/' + this.user.id]);
+
       }
     );
 
 
+  }
+
+
+  modifyCurrentUser(user:any){
+    this.user = user
+    if (this.current_user.id == this.user.id) {
+      localStorage['currentUser']= JSON.stringify(this.user)
+      this.current_user=this.user
+    }
   }
 
 }

@@ -13,12 +13,25 @@
 
 
 
+
+
+
+
         <label class="label-title-form" for="role">Rol:</label>
-        <select class="field-form" name="roles" #roles="ngModel" [(ngModel)]="user.roles" [(ngModel)]="role_user">
-            <option *ngFor="let role of roles_info" [ngValue]="role.id">
+
+        
+        <select class="field-form" name="roles" #role="ngModel" [(ngModel)]="user.roles" [(ngModel)]="role_user">
+            <option *ngFor="let role of roles_info"  [ngValue]="role.id">
                 {{role.name}}
             </option>
         </select>
+
+
+
+
+
+
+
 
         <input type="submit" value="Actualizar" class="form-submit" [disabled]="editUserForm.invalid">
 

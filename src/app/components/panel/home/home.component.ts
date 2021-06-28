@@ -34,6 +34,7 @@ export class HomeComponent implements OnInit {
             
           },
           error=>{
+            this._router.navigate(['/login'])
     
           }
         );

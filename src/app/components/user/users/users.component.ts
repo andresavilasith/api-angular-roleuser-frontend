@@ -18,21 +18,22 @@ export class UsersComponent implements OnInit {
   constructor(
     private _userService: UserService,
     private _router: Router
-  ) {
-    this.current_user = this._userService.getCurrentUser();
+    ) {
 
     this.token = this._userService.getToken();
+    
+    this.current_user = this._userService.getCurrentUser();
+
 
   }
 
   ngOnInit(): void {
 
     this._userService.getUsers(this.token).subscribe(
-      result => {
+      response => {
         this._userService.logged(this.current_user)
-        this.info_user = result
-        this.users = this.info_user.users.data
-
+        this.users = response.users.data
+       
 
       },
       error => {

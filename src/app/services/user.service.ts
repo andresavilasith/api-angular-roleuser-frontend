@@ -2,14 +2,13 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Observable, Subject } from "rxjs";
 import { global } from "./global.service";
-import { Router } from '@angular/router';
 
 @Injectable()
 
 export class UserService {
     public url_auth: string;
     public url_auth_token: string;
-    public url_user_panel: string;
+    public url_panel: string;
     public token: any;
     public user: any;
     public user_storage: any;
@@ -19,13 +18,12 @@ export class UserService {
     public message: any;
 
     constructor(
-        private _http: HttpClient,
-        private _router: Router
+        private _http: HttpClient
     ) {
 
         this.url_auth = global.urlAuth;
         this.url_auth_token = global.urlAuthToken;
-        this.url_user_panel = global.urlApiPanel;
+        this.url_panel = global.urlApiPanel;
     }
 
 
@@ -34,42 +32,42 @@ export class UserService {
     userData(token: any): Observable<any> {
         var headers = new HttpHeaders().set('Authorization', token)
 
-        return this._http.get(this.url_user_panel + '/user/identified', { headers: headers })
+        return this._http.get(this.url_panel + '/user/identified', { headers: headers })
     }
 
 
-    getUsers(token: any) {
+    getUsers(token: any) :Observable<any>{
         var headers = new HttpHeaders().set('Authorization', token)
 
-        return this._http.get(this.url_user_panel + '/user', { headers: headers })
+        return this._http.get(this.url_panel + '/user', { headers: headers })
 
     }
 
-    getUser(id: any, token: any) {
+    getUser(id: number, token: any) :Observable<any>{
         var headers = new HttpHeaders().set('Authorization', token)
 
-        return this._http.get(this.url_user_panel + '/user/' + id, { headers: headers });
+        return this._http.get(this.url_panel + '/user/' + id, { headers: headers });
     }
 
 
-    editUser(id: any, token: any) {
+    editUser(id: number, token: any) :Observable<any>{
 
         var headers = new HttpHeaders().set('Authorization', token)
 
-        return this._http.get(this.url_user_panel + '/user/' + id + '/edit', { headers: headers });
+        return this._http.get(this.url_panel + '/user/' + id + '/edit', { headers: headers });
     }
 
-    updateUser(id: any, user: any, token: any): Observable<any> {
+    updateUser(id: number, user: any, token: any): Observable<any> {
 
         var headers = new HttpHeaders().set('Authorization', token);
 
-        return this._http.put(this.url_user_panel + '/user/' + id, user, { headers: headers });
+        return this._http.put(this.url_panel + '/user/' + id, user, { headers: headers });
     }
 
-    deleteUser(id: any, token: any): Observable<any> {
+    deleteUser(id: number, token: any): Observable<any> {
         var headers = new HttpHeaders().set('Authorization', token);
 
-        return this._http.delete(this.url_user_panel + '/user/' + id, { headers: headers })
+        return this._http.delete(this.url_panel + '/user/' + id, { headers: headers })
 
     }
 
@@ -118,7 +116,7 @@ export class UserService {
         return this.loggedChanged;
     }
 
-    setMessage(message: any) {
+    setMessage(message: any){
         sessionStorage.setItem('message', message);
     }
 
