@@ -45,9 +45,9 @@ export class UsersComponent implements OnInit {
 
   }
 
-  deleteUser(id: any) {
+  deleteUser(id: number) {
     swal({
-      title: "Estas seguro?",
+      title: "Estas segura/o?",
       text: "Una vez eliminado el usuario no se podra recuperar!",
       icon: "warning",
       buttons: [true, true],

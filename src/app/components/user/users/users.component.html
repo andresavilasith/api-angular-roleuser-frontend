@@ -23,7 +23,7 @@
                 <td><button class="btn-table btn-table-show" [routerLink]="['/user',user.id]">Show</button></td>
                 <td><button class="btn-table btn-table-edit" [routerLink]="['/user-edit',user.id]">Edit</button></td>
                 <td><button *ngIf="user" (click)="deleteUser(user.id)"
-                        class="btn-table btn-table-delete">Eliminar</button></td>
+                        class="btn-table btn-table-delete">Delete</button></td>
 
             </tr>
 

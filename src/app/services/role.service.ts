@@ -19,20 +19,34 @@ export class RoleService {
 
     getRoles(token: any): Observable<any> {
         var headers = new HttpHeaders().set('Authorization', token);
-        
+
         return this._http.get(this.url_panel + '/role', { headers: headers })
     }
-    
-    getRole(id:number,token:any):Observable<any>{
+
+    newRole(token: any) {
         var headers = new HttpHeaders().set('Authorization', token);
 
-        return this._http.get(this.url_panel+'/role/'+id,{headers:headers})
+        return this._http.get(this.url_panel + '/role/create', { headers: headers });
+
     }
 
-    editRole(id:number,token:any):Observable<any>{
+    addRole(token: any, role: any) {
         var headers = new HttpHeaders().set('Authorization', token);
 
-        return this._http.get(this.url_panel+'/role/'+id+'/edit',{headers:headers})
+        return this._http.post(this.url_panel + '/role', role, { headers: headers })
+
+    }
+
+    getRole(id: number, token: any): Observable<any> {
+        var headers = new HttpHeaders().set('Authorization', token);
+
+        return this._http.get(this.url_panel + '/role/' + id, { headers: headers })
+    }
+
+    editRole(id: number, token: any): Observable<any> {
+        var headers = new HttpHeaders().set('Authorization', token);
+
+        return this._http.get(this.url_panel + '/role/' + id + '/edit', { headers: headers })
     }
 
     updateRole(id: number, role: any, token: any): Observable<any> {

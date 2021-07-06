@@ -1,1 +1,82 @@
-<p>edit-role works!</p>
+<div class="container">
+    <form action="#" #editRoleForm="ngForm" (ngSubmit)="onSubmit(editRoleForm)" class="form-users">
+        <h2>Actualizar datos de perfil</h2>
+
+        <label for="name" class="label-title-form">Nombre:</label>
+        <input type="text" placeholder="nombre" name="name" class="field-form" required #name="ngModel" [(ngModel)]="role.name">
+
+
+
+        <label class="label-title-form" for="slug">Slug:</label>
+        <input type="text" class="field-form" placeholder="Slug" required name="slug"
+        #slug="ngModel" [(ngModel)]="role.slug">
+
+
+        <label class="label-title-form" for="description">Description:</label>
+        <input type="text" class="field-form" placeholder="Description" required name="description"
+        #description="ngModel" [(ngModel)]="role.description">
+
+
+        
+        <label class="label-title-form" for="description">Full Access:</label>
+
+        <div class="field-form radio-form">
+            <label for="fullaccessyes">Yes</label>
+            <input type="radio" id="fullaccessyes" name="full_access" #full_access="ngModel" [(ngModel)]="role.full_access" value="yes">
+     
+            <label for="fullaccessno">No</label>
+            <input type="radio" id="fullaccessno" name="full_access" #full_access="ngModel" [(ngModel)]="role.full_access" value="no">
+        </div>
+
+
+        
+
+        <div class="permissions-role">
+
+
+
+            <div class="tab">
+                <input type="button" class="tablinks" (click)="getPositionTab(-1)" [ngStyle]="position_tab==-1 ? {'background': '#303335', 'color': '#ffae00'} : {'background': '#ffae00', 'color': '#303335'}" value="Permisos de {{role.name}}">
+                <input type="button" *ngFor="let category of categories ; index as i" class="tablinks"
+                    (click)="getPositionTab(i)" [ngStyle]="position_tab==i ? {'background': '#303335', 'color': '#ffae00'} : {'background': '#ffae00', 'color': '#303335'}" value="{{category.name}}">
+            </div>
+
+
+            <div id="role" class="tabcontent" [ngStyle]="position_tab==-1 ? {'display': 'block'} : {'display' : 'none'}">
+
+                <div class="category-permissions" *ngFor="let category of categories"
+                    [ngStyle]="position_tab==-1 ? {'display': 'flex'} : {'display' : 'none'}">
+                    <div class="badge badge-primary" [ngStyle]="category_permission.includes(category.id) ? {'display': 'flex'} : {'display' : 'none'}">
+                        {{category.name}}
+                    </div>
+                    <span class="badge badge-success"
+                        *ngFor="let permission of role.permissions" [ngStyle]="category.id == permission.category_id ? {'display': 'block'} : {'display': 'none'}">{{permission.name}}</span>
+
+                </div>
+
+            </div>
+
+            <div *ngFor="let category of categories; index as i"
+                [ngStyle]="position_tab==i ? {'display': 'flex', 'flex-direction': 'column', 'align-items': 'flex-start'} : {'display' : 'none'}" id="role{{category.id}}"
+                class="tabcontent">
+
+                <div class="checkbox-permission" *ngFor="let permission of category.permissions">
+                    <input type="checkbox" class="checkboxrole" name="permissions[]" id="permission_{{permission.id}}" (change)="eventCheck($event.target)" [checked]="permission_role.includes(permission.id)" value="{{permission.id}}">
+                    <label for="permission">
+                        {{permission.name}}
+                        <em>({{permission.description}})</em>
+                    </label>
+                </div>
+
+            </div>
+
+        </div>
+        
+
+
+
+        <input type="submit" value="Enviar" class="form-submit" [disabled]="editRoleForm.invalid">
+    </form>
+
+
+</div>

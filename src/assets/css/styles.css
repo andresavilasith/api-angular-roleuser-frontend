@@ -784,7 +784,7 @@
   }
   
   /* Style the buttons inside the tab */
-  .tab button {
+  .tab input {
     cursor: pointer;
     padding: 14px 16px;
     transition: 0.3s;
@@ -843,6 +843,11 @@
     padding: 1em;
     border-radius: .5em;
     font-size: 1em;
+  }
+
+  .radio-form{
+    display: flex;
+    justify-content: space-evenly;
   }
   
   .form-submit{
@@ -958,6 +963,10 @@
   .active, .collapSegmentInfo:hover {
     background-color: var(--gray);
     color: var(--softOrange);
+  }
+
+  .active-role{
+    display: block;
   }
   
   .contentSegment {

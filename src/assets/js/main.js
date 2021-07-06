@@ -187,7 +187,6 @@ function automaticSlides() {
 /* ----- Nav tabs de sponsors ---------------------*/
 /* ------------------------------------------------*/
 
-'use strict'
 var tablinks = document.querySelectorAll(".tablinks")
 
 var tabcontent = document.querySelectorAll(".tabcontent")
@@ -207,8 +206,6 @@ for (let i = 0; i < tablinks.length; i++) {
         tablinks[i].style.background = "#303335";
         document.getElementById(tabcontent[i].id).style.display = "block"
         document.getElementById(tabcontent[i].id).style.overflow = "auto"
-
-
     })
 }
 

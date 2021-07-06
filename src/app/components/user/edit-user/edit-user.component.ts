@@ -43,10 +43,6 @@ export class EditUserComponent implements OnInit {
           response => {
 
             this.modifyCurrentUser(response.user);
-            
-            
-            this._userService.logged(this.current_user)
-            
 
             //Todos los roles
             this.roles_info = response.roles
@@ -91,6 +87,7 @@ export class EditUserComponent implements OnInit {
     if (this.current_user.id == this.user.id) {
       localStorage['currentUser']= JSON.stringify(this.user)
       this.current_user=this.user
+      this._userService.logged(this.current_user)
     }
   }
 

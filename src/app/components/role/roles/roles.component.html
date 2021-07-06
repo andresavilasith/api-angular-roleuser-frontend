@@ -1,1 +1,28 @@
-<p>roles works!</p>
+<div class="table-content">
+
+    <table>
+        <tbody>
+
+            <tr class="title-table">
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Description</th>
+                <th scope="col">Full_access</th>
+                <th scope="col" colspan="3">Actions</th>
+            </tr>
+            <tr *ngFor="let role of roles">
+                <td data-label="Id">{{role.id}}</td>
+                <td data-label="Name">{{role.name}}</td>
+                <td data-label="Slug">{{role.slug}}</td>
+                <td data-label="Description">{{role.description}}</td>
+                <td data-label="Full_access">{{role.full_access}}</td>
+                <td><button class="btn-table btn-table-show" [routerLink]="['/role',role.id]">Show</button></td>
+                <td><button class="btn-table btn-table-edit" [routerLink]="['/role-edit',role.id]">Edit</button></td>
+                <td><button class="btn-table btn-table-delete" (click)="deleteRole(role.id)">Delete</button></td>
+            </tr>
+
+        </tbody>
+
+    </table>
+</div>
