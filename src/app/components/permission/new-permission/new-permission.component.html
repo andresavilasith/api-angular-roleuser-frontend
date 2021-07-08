@@ -1,1 +1,34 @@
-<p>new-permission works!</p>
+<div class="container">
+    <form #newPermissionForm="ngForm" (ngSubmit)="onSubmit(newPermissionForm)" class="form-users">
+        <h2>Nuevo permiso</h2>
+
+        <label for="name" class="label-title-form">Nombre:</label>
+        <input type="text" placeholder="nombre" name="name"  #name="ngModel" [(ngModel)]="permission.name" class="field-form" required>
+
+
+
+        <label class="label-title-form" for="slug">Slug:</label>
+        <input type="text" class="field-form" placeholder="Slug"  #slug="ngModel" [(ngModel)]="permission.slug" required name="slug">
+
+
+        <label class="label-title-form" for="description">Description:</label>
+        <input type="text" class="field-form" placeholder="Description"  #description="ngModel" [(ngModel)]="permission.description" required name="description">
+
+
+        <label class="label-title-form" for="role">Categoria:</label>
+
+        
+        <select class="field-form" name="category_id" #category_id="ngModel" [(ngModel)]="permission.category_id">
+            <option *ngFor="let category of categories"  [ngValue]="category.id">
+                {{category.name}}
+            </option>
+        </select>
+
+
+        
+        <input type="submit" value="Crear" class="form-submit" [disabled]="newPermissionForm.invalid">
+
+    </form>
+
+
+</div>

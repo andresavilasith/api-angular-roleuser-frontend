@@ -36,7 +36,7 @@ export class NewRoleComponent implements OnInit {
   ngOnInit(): void {
     this._roleService.newRole(this.token).subscribe(
       response => {
-        this._userService.logged(this.current_user)
+        this._userService.logged(this.current_user);
         this.categories_all = response
         this.categories = this.categories_all.categories
       },
@@ -57,7 +57,7 @@ export class NewRoleComponent implements OnInit {
 
     this._roleService.addRole(this.token,this.role).subscribe(
       response=>{
-        console.log(response);
+        this._router.navigate(['role']);
         
       },
       error=>{

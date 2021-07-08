@@ -36,21 +36,21 @@ export class UserService {
     }
 
 
-    getUsers(token: any) :Observable<any>{
+    getUsers(token: any, uservalue: string): Observable<any> {
         var headers = new HttpHeaders().set('Authorization', token)
 
-        return this._http.get(this.url_panel + '/user', { headers: headers })
+        return this._http.post(this.url_panel + '/user', { uservalue: uservalue }, { headers: headers })
 
     }
 
-    getUser(id: number, token: any) :Observable<any>{
+    getUser(id: number, token: any): Observable<any> {
         var headers = new HttpHeaders().set('Authorization', token)
 
         return this._http.get(this.url_panel + '/user/' + id, { headers: headers });
     }
 
 
-    editUser(id: number, token: any) :Observable<any>{
+    editUser(id: number, token: any): Observable<any> {
 
         var headers = new HttpHeaders().set('Authorization', token)
 
@@ -116,7 +116,7 @@ export class UserService {
         return this.loggedChanged;
     }
 
-    setMessage(message: any){
+    setMessage(message: any) {
         sessionStorage.setItem('message', message);
     }
 

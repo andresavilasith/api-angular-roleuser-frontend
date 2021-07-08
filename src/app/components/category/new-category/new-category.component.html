@@ -1,1 +1,19 @@
-<p>new-category works!</p>
+<div class="container">
+    <form action="#" #newCategoryForm="ngForm" (ngSubmit)="onSubmit(newCategoryForm)" class="form-users">
+        <h2>Crear Categoria</h2>
+
+
+
+        <input type="text" placeholder="nombre" class="field-form" name="name" #name="ngModel"
+            [(ngModel)]="category.name" required>
+
+        <input type="text" placeholder="description" class="field-form" name="description" #description="ngModel"
+            [(ngModel)]="category.description" required>
+
+
+
+        <input type="submit" value="Crear categoria" class="form-submit" [disabled]="newCategoryForm.invalid">
+    </form>
+
+
+</div>

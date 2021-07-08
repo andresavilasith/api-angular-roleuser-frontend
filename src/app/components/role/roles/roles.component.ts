@@ -16,6 +16,10 @@ export class RolesComponent implements OnInit {
   public current_user: any;
   public token: any;
   public roles: any
+  public rolevalue: any
+  public per_page: any;
+  public total: any;
+  public current_page: number;
 
   constructor(
     private _userService: UserService,
@@ -25,15 +29,19 @@ export class RolesComponent implements OnInit {
 
     this.token = this._userService.getToken();
     this.current_user = this._userService.getCurrentUser();
+    this.current_page = 1;
+
   }
 
   ngOnInit(): void {
 
-    this._roleService.getRoles(this.token).subscribe(
+    this._roleService.getRoles(this.token,this.rolevalue).subscribe(
       response=>{
         this._userService.logged(this.current_user)
-        this.roles=response.roles.data
-       
+        this.roles=response.roles
+        this.per_page = 7;
+        this.total = Object.values(this.roles).length
+      
       },
       error=>{
         console.log(error)
@@ -64,6 +72,8 @@ export class RolesComponent implements OnInit {
             },
             error => {
 
+              console.log(error);
+              
               swal("El rol no se ha eliminado");
               this._router.navigate(['/role'])
 

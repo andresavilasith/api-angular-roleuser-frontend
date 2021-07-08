@@ -4,6 +4,9 @@ import { BrowserModule } from '@angular/platform-browser';
 //Cargar modulos y servicios de las rutas
 import { routing, appRoutingProviders } from './app.routing';
 
+//Paginacion
+import {NgxPaginationModule} from 'ngx-pagination';
+
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/panel/header/header.component';
 import { FooterComponent } from './components/panel/footer/footer.component';
@@ -58,7 +61,8 @@ import { HomeComponent } from './components/panel/home/home.component';
     BrowserModule,
     routing, 
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxPaginationModule
   ],
   providers: [
     appRoutingProviders,

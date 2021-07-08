@@ -17,10 +17,10 @@ export class RoleService {
 
     /* =========== Peticiones al Backend ========= */
 
-    getRoles(token: any): Observable<any> {
+    getRoles(token: any, rolevalue = ''): Observable<any> {
         var headers = new HttpHeaders().set('Authorization', token);
 
-        return this._http.get(this.url_panel + '/role', { headers: headers })
+        return this._http.post(this.url_panel + '/roles', { rolevalue: rolevalue }, { headers: headers })
     }
 
     newRole(token: any) {

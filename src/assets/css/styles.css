@@ -822,6 +822,13 @@
     padding: 1em;
   }
   
+  .container-search{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .5em;
+
+  }
   .form-users{
     border: 7px double var(--softOrange);
     display: flex;
@@ -844,7 +851,14 @@
     border-radius: .5em;
     font-size: 1em;
   }
+  
+  .field-search{
+    width: 30em;
+    padding: .5em;
+    border-radius: .5em;
+    font-size: 1em;
 
+  }
   .radio-form{
     display: flex;
     justify-content: space-evenly;
@@ -860,6 +874,19 @@
     cursor: pointer;
     transition:  ease background-color 1s;
     align-self: center;
+  }
+
+  .search-submit{
+    width: 10em;
+    background-color: var(--softOrange);
+    padding: .7em;
+    font-weight: 600;
+    border-radius: .2em;
+    border: none;
+    cursor: pointer;
+    transition:  ease background-color 1s;
+    align-self: center;
+    margin-left: .2em;
   }
   
   .login-submit{
@@ -1084,4 +1111,9 @@
   .alert-warning{
     color: var(--gray);
     background-color: #fbff00;
+  }
+
+  .alert-danger{
+    color: var(--gray);
+    background-color: #ff0800;
   }

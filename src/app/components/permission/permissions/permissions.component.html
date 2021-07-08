@@ -1,1 +1,38 @@
-<p>permissions works!</p>
+<div class="container-search">     
+    <input type="text" placeholder="Buscar permiso" name="name" [(ngModel)]="permissionvalue" class="field-search" required (keyup)="ngOnInit()">
+</div>
+
+<div class="table-content">
+
+    <table>
+        <tbody>
+
+            <tr class="title-table">
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Slug</th>
+                <th scope="col">Description</th>
+
+                <th scope="col" colspan="3">Actions</th>
+            </tr>
+            <tr *ngFor="let permission of permissions | paginate: { itemsPerPage: per_page, currentPage: current_page}">
+                <td data-label="Id">{{permission.id}}</td>
+                <td data-label="Name">{{permission.name}}</td>
+                <td data-label="Slug">{{permission.slug}}</td>
+                <td data-label="Description">{{permission.description}}</td>
+
+                <td><button class="btn-table btn-table-show" [routerLink]="['/permission',permission.id]">Show</button>
+                </td>
+                <td><button class="btn-table btn-table-edit"
+                        [routerLink]="['/permission-edit',permission.id]">Edit</button></td>
+                <td><button class="btn-table btn-table-delete" (click)="deletePermission(permission.id)">Delete</button>
+                </td>
+            </tr>
+
+        </tbody>
+
+    </table>
+</div>
+<div class="container" *ngIf="total > per_page">
+    <pagination-controls (pageChange)="current_page = $event"></pagination-controls>
+</div>

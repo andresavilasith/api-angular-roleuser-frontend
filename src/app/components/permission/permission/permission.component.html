@@ -1,1 +1,31 @@
-<p>permission works!</p>
+<div class="container">
+    <div class="form-users">
+
+        <label for="name" class="label-title-form">Nombre:</label>
+        <input type="text" placeholder="nombre" name="name"  #name="ngModel" [(ngModel)]="permission.name" class="field-form" required disabled>
+
+
+
+        <label class="label-title-form" for="slug">Slug:</label>
+        <input type="text" class="field-form" placeholder="Slug"  #slug="ngModel" [(ngModel)]="permission.slug" required name="slug" disabled>
+
+
+        <label class="label-title-form" for="description">Description:</label>
+        <input type="text" class="field-form" placeholder="Description"  #description="ngModel" [(ngModel)]="permission.description" required name="description" disabled>
+
+
+        <label class="label-title-form" for="role">Categoria:</label>
+
+        
+        <select class="field-form" name="category_id" #category_id="ngModel" [(ngModel)]="permission.category_id">
+            <option *ngFor="let category of categories"  [ngValue]="category.id" disabled>
+                {{category.name}}
+            </option>
+        </select>
+
+
+
+    </div>
+
+
+</div>

@@ -1,3 +1,7 @@
+<div class="container-search">     
+    <input type="text" placeholder="Buscar rol" name="name" [(ngModel)]="rolevalue" class="field-search" required (keyup)="ngOnInit()">
+</div>
+
 <div class="table-content">
 
     <table>
@@ -11,7 +15,7 @@
                 <th scope="col">Full_access</th>
                 <th scope="col" colspan="3">Actions</th>
             </tr>
-            <tr *ngFor="let role of roles">
+            <tr *ngFor="let role of roles | paginate: { itemsPerPage: per_page, currentPage: current_page }">
                 <td data-label="Id">{{role.id}}</td>
                 <td data-label="Name">{{role.name}}</td>
                 <td data-label="Slug">{{role.slug}}</td>
@@ -25,4 +29,8 @@
         </tbody>
 
     </table>
+</div>
+
+<div class="container">
+    <pagination-controls *ngIf="total > per_page" (pageChange)="current_page = $event"></pagination-controls>
 </div>

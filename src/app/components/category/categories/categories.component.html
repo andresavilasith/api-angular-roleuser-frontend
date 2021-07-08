@@ -1,1 +1,36 @@
-<p>categories works!</p>
+<div class="container-search">     
+    <input type="text" placeholder="Buscar categoria" name="name" [(ngModel)]="categoryvalue" class="field-search" required (keyup)="ngOnInit()">
+</div>
+
+<div class="table-content">
+
+    <table>
+        <tbody>
+
+            <tr class="title-table">
+                <th scope="col">Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+                <th scope="col" colspan="3">Actions</th>
+            </tr>
+
+            <tr *ngFor="let category of categories | paginate: { itemsPerPage: per_page, currentPage: current_page }">
+                <td scope="row" data-label="Id">{{category.id}}</td>
+                <td data-label="Name">{{category.name}}</td>
+                <td data-label="Description">{{category.description}}</td>
+                <td><button class="btn-table btn-table-show" [routerLink]="['/category',category.id]">Show</button></td>
+                <td><button class="btn-table btn-table-edit" [routerLink]="['/category-edit',category.id]">Edit</button>
+                </td>
+                <td><button class="btn-table btn-table-delete" (click)="deleteCategory(category.id)">Delete</button>
+                </td>
+            </tr>
+
+
+        </tbody>
+
+    </table>
+</div>
+
+<div class="container">
+    <pagination-controls *ngIf="total > per_page" (pageChange)="current_page = $event"></pagination-controls>
+</div>

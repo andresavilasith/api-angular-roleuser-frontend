@@ -1,1 +1,19 @@
-<p>edit-category works!</p>
+<div class="container">
+    <form action="#" #editCategoryForm="ngForm" (ngSubmit)="onSubmit(editCategoryForm)" class="form-users">
+        <h2>Editar Categoria</h2>
+
+
+
+        <input type="text" placeholder="nombre" class="field-form" name="name" #name="ngModel"
+            [(ngModel)]="category.name" required>
+
+        <input type="text" placeholder="description" class="field-form" name="description" #description="ngModel"
+            [(ngModel)]="category.description" required>
+
+
+
+        <input type="submit" value="Editar categoria" class="form-submit" [disabled]="editCategoryForm.invalid">
+    </form>
+
+
+</div>

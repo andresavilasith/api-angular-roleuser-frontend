@@ -15,6 +15,12 @@ export class UsersComponent implements OnInit {
   public token: any
   public info_user: any
   public users: any
+  public uservalue: any
+  public per_page:any;
+  public total:any;
+  public current_page:number;
+
+
   constructor(
     private _userService: UserService,
     private _router: Router
@@ -24,17 +30,22 @@ export class UsersComponent implements OnInit {
     
     this.current_user = this._userService.getCurrentUser();
 
+    this.current_page=1;
+
 
   }
 
   ngOnInit(): void {
 
-    this._userService.getUsers(this.token).subscribe(
+    this._userService.getUsers(this.token,this.uservalue).subscribe(
       response => {
+        
         this._userService.logged(this.current_user)
-        this.users = response.users.data
-       
-
+        this.users = response.users
+        this.per_page=5;
+        this.total = Object.values(this.users).length
+        
+    
       },
       error => {
         console.log(error);
