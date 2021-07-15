@@ -69,7 +69,7 @@
                         </div>
                     </a>
                     <div class="submenu">
-                        <a class="subitem" href="#" [ngStyle]="loggedIn && permissions_slug?.includes('userown.edit') ? {'display': 'flex'} : {'display' : 'none'}">Editar perfil</a>
+                        <a class="subitem" href="#" [ngStyle]="loggedIn && permissions_slug?.includes('userown.edit') ? {'display': 'flex'} : {'display' : 'none'}" [routerLink]="['/user-edit',user?.id]">Editar perfil</a>
                         <a class="subitem" (click)="logout()">Salir</a>
                     </div>
                 </div>
