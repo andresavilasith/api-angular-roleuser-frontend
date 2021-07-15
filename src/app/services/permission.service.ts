@@ -47,11 +47,11 @@ export class PermissionService {
         return this._http.get(this.url_panel + '/permission/' + id + '/edit', { headers: headers })
     }
 
-    updatePermission(id: number, category: any, token: any): Observable<any> {
+    updatePermission(id: number, permission: any, token: any): Observable<any> {
 
         var headers = new HttpHeaders().set('Authorization', token);
 
-        return this._http.put(this.url_panel + '/permission/' + id, category, { headers: headers });
+        return this._http.put(this.url_panel + '/permission/' + id, permission, { headers: headers });
     }
 
     deletePermission(id: number, token: any): Observable<any> {

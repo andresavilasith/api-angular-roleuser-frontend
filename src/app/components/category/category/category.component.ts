@@ -15,6 +15,7 @@ export class CategoryComponent implements OnInit {
   public current_user: any;
   public token: any;
   public status: any;
+  public permissions: any;
   public category: Category;
 
   constructor(
@@ -41,6 +42,23 @@ export class CategoryComponent implements OnInit {
 
             this.category = response.category
             this._userService.logged(this.current_user);
+
+
+
+            this._userService.userPermissions(this.token).subscribe(
+              response => {
+
+                this.permissions = response.permissions;
+
+                this._userService.permissionUser(this.permissions);
+
+
+              },
+              error => {
+                console.log(error);
+
+              }
+            );
 
           },
           error => {

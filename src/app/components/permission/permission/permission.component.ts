@@ -14,6 +14,7 @@ export class PermissionComponent implements OnInit {
 
   public token: any;
   public categories: any;
+  public permissions: any;
   public current_user: any;
   public permission: Permission;
 
@@ -41,6 +42,23 @@ export class PermissionComponent implements OnInit {
             this.categories = response.categories;
 
             this.permission = response.permission
+
+            
+
+            this._userService.userPermissions(this.token).subscribe(
+              response => {
+
+                this.permissions = response.permissions;
+
+                this._userService.permissionUser(this.permissions);
+
+
+              },
+              error => {
+                console.log(error);
+
+              }
+            );
 
           },
           error => {

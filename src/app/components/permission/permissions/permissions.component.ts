@@ -15,10 +15,12 @@ export class PermissionsComponent implements OnInit {
   public current_user: any;
   public token: any;
   public permissions: any;
+  public perms: any;
   public permissionvalue: any
   public per_page: any;
   public total: any;
   public current_page: number;
+  public permissions_slug: any[] = [];
 
   constructor(
     private _userService: UserService,
@@ -41,6 +43,25 @@ export class PermissionsComponent implements OnInit {
         this.per_page = 7;
         this.total = Object.values(this.permissions).length;
      
+        
+        this._userService.userPermissions(this.token).subscribe(
+          response => {
+
+            this.perms=response.permissions;
+
+            this._userService.permissionUser(this.perms);
+
+            for (let permission of this.perms) {
+              
+              this.permissions_slug.push(permission.slug);
+            }
+           
+          },
+          error => {
+            console.log(error);
+            
+          }
+        );
         
 
       },

@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit {
 
   public user: any;
   public token: any;
+  public permissions: any;
 
   constructor(
     private _router: Router,
@@ -21,36 +22,41 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
-    this.user = this._userService.userData(this.token).subscribe(
-      result=>{
-        this.user=result
-        this._userService.userData(this.token).subscribe(
-          resultUser=>{
-            localStorage.setItem('currentUser',JSON.stringify(resultUser));
 
 
-            this._userService.logged(this._userService.getCurrentUser());
+    this._userService.userData(this.token).subscribe(
+      resultUser => {
+        this.user = resultUser
+
+
+        localStorage.setItem('currentUser', JSON.stringify(resultUser));
+
+
+        this._userService.logged(this._userService.getCurrentUser());
+
+        this._userService.userPermissions(this.token).subscribe(
+          response => {
+            this.permissions = response.permissions
             
+            this._userService.permissionUser(this.permissions);
           },
-          error=>{
-            this._router.navigate(['/login'])
-    
+          error => {
+            console.log(error);
+
           }
         );
-      },
-      error=>{
-        this._userService.logout()
-        this._router.navigate(['/login'])
-        console.log(error);
-        
-        
-      }
-    )
 
-   
+      },
+      error => {
+        this._router.navigate(['/login'])
+
+      }
+    );
+
+
+
   }
 
-  
+
 
 }

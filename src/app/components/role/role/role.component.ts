@@ -17,6 +17,7 @@ export class RoleComponent implements OnInit {
   public user: any
   public categories_all: any;
   public categories: any;
+  public permissions: any;
   public category_permission: any;
   public position_tab: number;
   public role: Role;
@@ -51,6 +52,21 @@ export class RoleComponent implements OnInit {
             this.role = response.role;
 
             this.category_permission = response.category_permission
+
+            this._userService.userPermissions(this.token).subscribe(
+              response => {
+
+                this.permissions = response.permissions;
+
+                this._userService.permissionUser(this.permissions);
+
+
+              },
+              error => {
+                console.log(error);
+
+              }
+            );
 
           },
           error => {

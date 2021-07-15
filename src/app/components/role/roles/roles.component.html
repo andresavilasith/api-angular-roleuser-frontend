@@ -21,9 +21,9 @@
                 <td data-label="Slug">{{role.slug}}</td>
                 <td data-label="Description">{{role.description}}</td>
                 <td data-label="Full_access">{{role.full_access}}</td>
-                <td><button class="btn-table btn-table-show" [routerLink]="['/role',role.id]">Show</button></td>
-                <td><button class="btn-table btn-table-edit" [routerLink]="['/role-edit',role.id]">Edit</button></td>
-                <td><button class="btn-table btn-table-delete" (click)="deleteRole(role.id)">Delete</button></td>
+                <td><button class="btn-table btn-table-show" [ngStyle]="permissions_slug.includes('role.show')  ? {'display': 'flex'} : {'display' : 'none'}" [routerLink]="['/role',role.id]">Show</button></td>
+                <td><button class="btn-table btn-table-edit" [ngStyle]="permissions_slug.includes('role.edit')  ? {'display': 'flex'} : {'display' : 'none'}" [routerLink]="['/role-edit',role.id]">Edit</button></td>
+                <td><button class="btn-table btn-table-delete" [ngStyle]="permissions_slug.includes('role.destroy')  ? {'display': 'flex'} : {'display' : 'none'}" (click)="deleteRole(role.id)">Delete</button></td>
             </tr>
 
         </tbody>

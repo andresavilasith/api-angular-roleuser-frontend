@@ -20,6 +20,8 @@ export class RolesComponent implements OnInit {
   public per_page: any;
   public total: any;
   public current_page: number;
+  public permissions: any
+  public permissions_slug: any[] = [];
 
   constructor(
     private _userService: UserService,
@@ -41,7 +43,26 @@ export class RolesComponent implements OnInit {
         this.roles=response.roles
         this.per_page = 7;
         this.total = Object.values(this.roles).length
-      
+        
+        
+        this._userService.userPermissions(this.token).subscribe(
+          response => {
+
+            this.permissions=response.permissions;
+
+            this._userService.permissionUser(this.permissions);
+
+            for (let permission of this.permissions) {
+              
+              this.permissions_slug.push(permission.slug);
+            }
+           
+          },
+          error => {
+            console.log(error);
+            
+          }
+        );
       },
       error=>{
         console.log(error)

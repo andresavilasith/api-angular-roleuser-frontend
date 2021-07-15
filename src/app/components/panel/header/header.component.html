@@ -2,7 +2,7 @@
     <nav>
         <div class="menu" id="menu-panel">
 
-            <div class="item has-submenu" [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn && permissions_slug?.includes('user.index') ? {'display': 'flex'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Usuarios
                 </a>
@@ -13,37 +13,37 @@
             </div>
 
 
-            <div class="item has-submenu" [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn && permissions_slug?.includes('role.index') ? {'display': 'flex'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Roles
                 </a>
                 <div class="submenu">
                     <a class="subitem" [routerLink]="['role']">Lista de roles</a>
-                    <a class="subitem" [routerLink]="['role-new']">Crear rol</a>
+                    <a class="subitem" [routerLink]="['role-new']" [ngStyle]="loggedIn && permissions_slug?.includes('role.create') ? {'display': 'flex'} : {'display' : 'none'}">Crear rol</a>
 
                 </div>
             </div>
 
 
-            <div class="item has-submenu" [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn && permissions_slug?.includes('category.index') ? {'display': 'flex'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Categorias
                 </a>
                 <div class="submenu">
                     <a class="subitem" [routerLink]="['category']">Lista de categorias</a>
-                    <a class="subitem" [routerLink]="['category-new']">Crear categoria</a>
+                    <a class="subitem" [ngStyle]="loggedIn && permissions_slug?.includes('category.create') ? {'display': 'flex'} : {'display' : 'none'}" [routerLink]="['category-new']">Crear categoria</a>
 
                 </div>
             </div>
 
 
-            <div class="item has-submenu" [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn && permissions_slug?.includes('permission.index') ? {'display': 'flex'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Permisos
                 </a>
                 <div class="submenu">
                     <a class="subitem" [routerLink]="['permission']">Lista de permisos</a>
-                    <a class="subitem" [routerLink]="['permission-new']">Crear permiso</a>
+                    <a class="subitem" [routerLink]="['permission-new']" [ngStyle]="loggedIn && permissions_slug?.includes('permission.create') ? {'display': 'flex'} : {'display' : 'none'}">Crear permiso</a>
 
                 </div>
             </div>
@@ -69,9 +69,7 @@
                         </div>
                     </a>
                     <div class="submenu">
-                        <a class="subitem" href="#">Editar perfil</a>
-                        <a class="subitem" href="#">Articulos</a>
-                        <a class="subitem" href="panel.html">Panel</a>
+                        <a class="subitem" href="#" [ngStyle]="loggedIn && permissions_slug?.includes('userown.edit') ? {'display': 'flex'} : {'display' : 'none'}">Editar perfil</a>
                         <a class="subitem" (click)="logout()">Salir</a>
                     </div>
                 </div>

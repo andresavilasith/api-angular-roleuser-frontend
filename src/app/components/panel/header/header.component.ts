@@ -15,17 +15,20 @@ export class HeaderComponent implements OnInit {
 
   @Input() loggedIn: any;
   @Input() user: any;
-  public token: any;
+  @Input() token: any;
+  @Input() permissions_slug: any;
+  
 
   constructor(
     private _userService: UserService,
     private _router: Router
   ) {
-    
+ 
   }
 
   ngOnInit(): void {
 
+    
 
   }
 

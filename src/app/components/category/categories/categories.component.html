@@ -18,10 +18,10 @@
                 <td scope="row" data-label="Id">{{category.id}}</td>
                 <td data-label="Name">{{category.name}}</td>
                 <td data-label="Description">{{category.description}}</td>
-                <td><button class="btn-table btn-table-show" [routerLink]="['/category',category.id]">Show</button></td>
-                <td><button class="btn-table btn-table-edit" [routerLink]="['/category-edit',category.id]">Edit</button>
+                <td><button class="btn-table btn-table-show" [ngStyle]="permissions_slug.includes('category.show')  ? {'display': 'flex'} : {'display' : 'none'}" [routerLink]="['/category',category.id]">Show</button></td>
+                <td><button class="btn-table btn-table-edit" [ngStyle]="permissions_slug.includes('category.edit')  ? {'display': 'flex'} : {'display' : 'none'}" [routerLink]="['/category-edit',category.id]">Edit</button>
                 </td>
-                <td><button class="btn-table btn-table-delete" (click)="deleteCategory(category.id)">Delete</button>
+                <td><button class="btn-table btn-table-delete" [ngStyle]="permissions_slug.includes('category.destroy')  ? {'display': 'flex'} : {'display' : 'none'}" (click)="deleteCategory(category.id)">Delete</button>
                 </td>
             </tr>
 

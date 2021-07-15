@@ -21,11 +21,11 @@
                 <td data-label="Slug">{{permission.slug}}</td>
                 <td data-label="Description">{{permission.description}}</td>
 
-                <td><button class="btn-table btn-table-show" [routerLink]="['/permission',permission.id]">Show</button>
+                <td><button class="btn-table btn-table-show" [ngStyle]="permissions_slug.includes('permission.show')  ? {'display': 'flex'} : {'display' : 'none'}" [routerLink]="['/permission',permission.id]">Show</button>
                 </td>
-                <td><button class="btn-table btn-table-edit"
+                <td><button class="btn-table btn-table-edit" [ngStyle]="permissions_slug.includes('permission.edit')  ? {'display': 'flex'} : {'display' : 'none'}"
                         [routerLink]="['/permission-edit',permission.id]">Edit</button></td>
-                <td><button class="btn-table btn-table-delete" (click)="deletePermission(permission.id)">Delete</button>
+                <td><button class="btn-table btn-table-delete" [ngStyle]="permissions_slug.includes('permission.destroy')  ? {'display': 'flex'} : {'display' : 'none'}" (click)="deletePermission(permission.id)">Delete</button>
                 </td>
             </tr>
 

@@ -36,7 +36,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.user_data = {
       grant_type: 'password',
       client_id: 2,
-      client_secret: 'i956VdKucGoWROB3c5l8Tw0Ism5v48MFakr0rnhL',
+      client_secret: 'CnmUKWB7A6l0JeKVZIOrOYwWb4e7FFUEYkJjdkj0',
       scope: '*',
       username: this.user.email,
       password: this.user.password

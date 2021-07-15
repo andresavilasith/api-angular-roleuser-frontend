@@ -16,6 +16,7 @@ export class NewRoleComponent implements OnInit {
   public token: any;
   public categories_all: any;
   public categories: any;
+  public permissions: any;
   public position_tab: number;
   public role: Role;
   public selected_perm: any[] = [];
@@ -39,6 +40,23 @@ export class NewRoleComponent implements OnInit {
         this._userService.logged(this.current_user);
         this.categories_all = response
         this.categories = this.categories_all.categories
+
+        
+
+        this._userService.userPermissions(this.token).subscribe(
+          response => {
+
+            this.permissions = response.permissions;
+
+            this._userService.permissionUser(this.permissions);
+
+
+          },
+          error => {
+            console.log(error);
+
+          }
+        );
       },
       error => {
         console.log(error);

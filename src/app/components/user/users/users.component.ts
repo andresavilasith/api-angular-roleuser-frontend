@@ -15,37 +15,57 @@ export class UsersComponent implements OnInit {
   public token: any
   public info_user: any
   public users: any
+  public permissions: any;
+  public permissions_slug: any[] = [];
   public uservalue: any
-  public per_page:any;
-  public total:any;
-  public current_page:number;
+  public per_page: any;
+  public total: any;
+  public current_page: number;
 
 
   constructor(
     private _userService: UserService,
     private _router: Router
-    ) {
+  ) {
 
     this.token = this._userService.getToken();
-    
+
     this.current_user = this._userService.getCurrentUser();
 
-    this.current_page=1;
+    this.current_page = 1;
 
 
   }
 
   ngOnInit(): void {
 
-    this._userService.getUsers(this.token,this.uservalue).subscribe(
+    this._userService.getUsers(this.token, this.uservalue).subscribe(
       response => {
-        
+
         this._userService.logged(this.current_user)
         this.users = response.users
-        this.per_page=5;
+        this.per_page = 5;
         this.total = Object.values(this.users).length
-        
-    
+
+        this._userService.userPermissions(this.token).subscribe(
+          response => {
+
+            this.permissions=response.permissions;
+
+            this._userService.permissionUser(this.permissions);
+
+            for (let permission of this.permissions) {
+              
+              this.permissions_slug.push(permission.slug);
+            }
+           
+          },
+          error => {
+            console.log(error);
+            
+          }
+        );
+
       },
       error => {
         console.log(error);
@@ -55,6 +75,9 @@ export class UsersComponent implements OnInit {
     )
 
   }
+
+ 
+  
 
   deleteUser(id: number) {
     swal({

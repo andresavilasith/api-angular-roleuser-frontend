@@ -15,6 +15,7 @@ export class EditRoleComponent implements OnInit {
   public current_user: any;
   public token: any;
   public categories: any;
+  public permissions: any;
   public position_tab: number;
   public role: Role;
   public selected_perm: any[] = [];
@@ -55,6 +56,22 @@ export class EditRoleComponent implements OnInit {
 
             this.selected_perm = this.permission_role
 
+            
+
+            this._userService.userPermissions(this.token).subscribe(
+              response => {
+
+                this.permissions = response.permissions;
+
+                this._userService.permissionUser(this.permissions);
+
+
+              },
+              error => {
+                console.log(error);
+
+              }
+            );
 
           },
           error => {

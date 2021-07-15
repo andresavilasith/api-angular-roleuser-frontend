@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
   public token: any
   public user: any
   public roles: any
+  public permissions: any
   public role_user: any
   public info: any
   public title: any
@@ -43,6 +44,23 @@ export class UserComponent implements OnInit {
             this.user = this.info.user
             this.roles = this.info.roles
             this.role_user = this.info.role_user[0]
+
+            
+
+            this._userService.userPermissions(this.token).subscribe(
+              response => {
+
+                this.permissions = response.permissions;
+
+                this._userService.permissionUser(this.permissions);
+
+
+              },
+              error => {
+                console.log(error);
+
+              }
+            );
 
           },
           error => {

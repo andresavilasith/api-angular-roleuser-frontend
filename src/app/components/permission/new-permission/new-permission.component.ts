@@ -16,6 +16,7 @@ export class NewPermissionComponent implements OnInit {
   public status: any;
   public current_user: any;
   public categories: any;
+  public permissions: any;
   public permission: Permission;
 
   constructor(
@@ -37,6 +38,21 @@ export class NewPermissionComponent implements OnInit {
         this._userService.logged(this.current_user);
         this.categories = response.categories
 
+        this._userService.userPermissions(this.token).subscribe(
+          response => {
+
+            this.permissions = response.permissions;
+
+            this._userService.permissionUser(this.permissions);
+
+
+          },
+          error => {
+            console.log(error);
+
+          }
+        );
+
       },
       error => {
 
@@ -47,7 +63,6 @@ export class NewPermissionComponent implements OnInit {
   }
 
   onSubmit(form: any) {
-    console.log(form);
     this._permissionService.addPermission(this.token, this.permission).subscribe(
       response => {
         this.status = response.status

@@ -20,6 +20,9 @@ export class CategoriesComponent implements OnInit {
   public total: any;
   public current_page: number;
 
+  public permissions: any;
+  public permissions_slug: any[] = [];
+
   constructor(
     private _userService: UserService,
     private _categoryService: CategoryService,
@@ -40,6 +43,25 @@ export class CategoriesComponent implements OnInit {
         this.per_page = 7;
         this.total = Object.values(this.categories).length
       
+        
+        this._userService.userPermissions(this.token).subscribe(
+          response => {
+
+            this.permissions=response.permissions;
+
+            this._userService.permissionUser(this.permissions);
+
+            for (let permission of this.permissions) {
+              
+              this.permissions_slug.push(permission.slug);
+            }
+           
+          },
+          error => {
+            console.log(error);
+            
+          }
+        );
 
 
       },

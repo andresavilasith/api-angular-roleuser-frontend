@@ -16,6 +16,7 @@ export class EditCategoryComponent implements OnInit {
   public token: any;
   public status: any;
   public categories: any;
+  public permissions: any;
   public category: Category;
 
   constructor(
@@ -38,6 +39,21 @@ export class EditCategoryComponent implements OnInit {
             this._userService.logged(this.current_user);
             this.category = response.category
 
+            this._userService.userPermissions(this.token).subscribe(
+              response => {
+
+                this.permissions = response.permissions;
+
+                this._userService.permissionUser(this.permissions);
+
+
+              },
+              error => {
+                console.log(error);
+
+              }
+            );
+
           },
           error => {
             console.log(error);
@@ -55,12 +71,12 @@ export class EditCategoryComponent implements OnInit {
   onSubmit(form: any) {
     this._categoryService.updateRole(this.category.id, this.category, this.token).subscribe(
       response => {
-        this.status=response.status
-        
-        if(this.status=='success'){
+        this.status = response.status
+
+        if (this.status == 'success') {
           this._router.navigate(['category']);
         }
-        
+
 
       },
       error => {

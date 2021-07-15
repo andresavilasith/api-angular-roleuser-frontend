@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 export class AppComponent implements OnInit {
   title = 'roleuserfrontend';
   public loggedIn: any;
+  public permissions_slug: any;
   public token: any;
   public user: any;
 
@@ -28,15 +29,26 @@ export class AppComponent implements OnInit {
       result => {
         this.loggedIn = result
         this._userService.isUserCurrent().subscribe(
-        result=>{
-          this.user=result
-          
-        },
-        error=>{
-          console.log(error);
-          
-        }
-      )
+          result => {
+            this.user = result
+
+            this._userService.isUserPermission().subscribe(
+              response => {
+                this.permissions_slug = response;
+                
+              },
+              error => {
+                console.log(error);
+
+              }
+            );
+
+          },
+          error => {
+            console.log(error);
+
+          }
+        )
       }
       , error => {
         console.log(error);
@@ -45,6 +57,6 @@ export class AppComponent implements OnInit {
       })
 
 
-      
+
   }
 }

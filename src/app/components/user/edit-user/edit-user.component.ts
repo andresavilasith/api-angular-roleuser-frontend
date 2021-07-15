@@ -18,6 +18,9 @@ export class EditUserComponent implements OnInit {
   public roles_info: any
   public role_user: any
 
+
+  public permissions: any
+
   constructor(
     private _userService: UserService,
     private _route: ActivatedRoute,
@@ -41,6 +44,7 @@ export class EditUserComponent implements OnInit {
       params => {
         this._userService.editUser(params.id, this.token).subscribe(
           response => {
+            this._userService.logged(this.current_user);
 
             this.modifyCurrentUser(response.user);
 
@@ -50,21 +54,50 @@ export class EditUserComponent implements OnInit {
             //Rol asignado al usuario
             this.role_user = response.role_user[0]
 
+
+            this._userService.userPermissions(this.token).subscribe(
+              response => {
+
+                this.permissions = response.permissions;
+
+                this._userService.permissionUser(this.permissions);
+
+
+              },
+              error => {
+                console.log(error);
+
+              }
+            );
+
+          },
+          error=>{
+            console.log(error);
+            
           }
         )
+      },
+      error=>{
+        console.log(error);
+        
       }
     )
   }
 
+  
+
   onSubmit(form: any) {
+
 
     //Asignacion de role si no hay cambios
     this.user.roles = form.value.roles
+    console.log(this.user);
 
     this._userService.updateUser(this.user.id, this.user, this.token).subscribe(
       response => {
 
-        
+        console.log(response);
+
         this.modifyCurrentUser(response.user);
 
         this._router.navigate(['user']);
@@ -82,11 +115,11 @@ export class EditUserComponent implements OnInit {
   }
 
 
-  modifyCurrentUser(user:any){
+  modifyCurrentUser(user: any) {
     this.user = user
     if (this.current_user.id == this.user.id) {
-      localStorage['currentUser']= JSON.stringify(this.user)
-      this.current_user=this.user
+      localStorage['currentUser'] = JSON.stringify(this.user)
+      this.current_user = this.user
       this._userService.logged(this.current_user)
     }
   }

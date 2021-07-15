@@ -15,6 +15,8 @@ export class UserService {
 
     public loggedChanged = new Subject<boolean>();
     public currentUser = new Subject<any>();
+    public permissions_slug: any[] = [];
+    public permissionsUser = new Subject<any>();
     public message: any;
 
     constructor(
@@ -33,6 +35,13 @@ export class UserService {
         var headers = new HttpHeaders().set('Authorization', token)
 
         return this._http.get(this.url_panel + '/user/identified', { headers: headers })
+    }
+
+
+    userPermissions(token: any): Observable<any> {
+        var headers = new HttpHeaders().set('Authorization', token)
+
+        return this._http.get(this.url_panel + '/user/permissions', { headers: headers })
     }
 
 
@@ -87,6 +96,11 @@ export class UserService {
     }
 
 
+    isUserPermission(): Subject<any> {
+        return this.permissionsUser;
+    }
+
+
 
     getToken() {
         this.token = 'Bearer ' + localStorage.getItem('token');
@@ -96,6 +110,17 @@ export class UserService {
     logged(user: any): void {
         this.loggedChanged.next(true);
         this.currentUser.next(user);
+    }
+
+    permissionUser(permissions:any):void{
+
+        for (let perm of permissions) {
+            this.permissions_slug.push(perm.slug);
+            this.permissionsUser
+        }
+
+        this.permissionsUser.next(this.permissions_slug);
+
     }
 
 
@@ -125,5 +150,7 @@ export class UserService {
         return this.message
 
     }
+
+    
 
 }
