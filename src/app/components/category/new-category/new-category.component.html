@@ -7,7 +7,7 @@
         <input type="text" placeholder="nombre" class="field-form" name="name" #name="ngModel"
             [(ngModel)]="category.name" required>
 
-            <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+            <small *ngIf="!name.valid && name.touched" class="alert padmar alert-danger">
                 El nombre no es valido
             </small>
     
@@ -15,7 +15,7 @@
         <input type="text" placeholder="description" class="field-form" name="description" #description="ngModel"
             [(ngModel)]="category.description" required>
 
-            <small *ngIf="!description.valid && description.touched" class="invalid-feedback d-block">
+            <small *ngIf="!description.valid && description.touched" class="alert padmar alert-danger">
                 La descripcion no es valida
             </small>
     

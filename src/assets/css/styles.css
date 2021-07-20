@@ -1127,3 +1127,8 @@
     color: #ddd;
     background-color: #ff0800;
   }
+
+  .padmar{
+    padding: 1em;
+    margin: 1em;
+  }

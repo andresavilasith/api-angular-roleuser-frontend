@@ -6,7 +6,7 @@
         <input type="text" placeholder="nombre" name="name" #name="ngModel" [(ngModel)]="user.name" class="field-form"
             required>
 
-            <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+            <small *ngIf="!name.valid && name.touched" class="alert padmar alert-danger">
                 El nombre no es valido
             </small>
 
@@ -14,7 +14,7 @@
         <label class="label-title-form" for="email">Email:</label>
         <input type="email" class="field-form" placeholder="Su correo electronico" #email="ngModel"
             [(ngModel)]="user.email" required name="email">
-            <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+            <small *ngIf="!email.valid && email.touched" class="alert padmar alert-danger">
                 El email no es valido
             </small>
 

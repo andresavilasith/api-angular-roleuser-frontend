@@ -51,8 +51,8 @@
 
             <div class="profileSession">
 
-                <a class="item social" [routerLink]="['login']" *ngIf="!loggedIn && !permissions_slug" (click)="statusMenu()">Log In</a>
-                <a class="item social secondary" [routerLink]="['register']" *ngIf="!loggedIn && !permissions_slug" (click)="statusMenu()">Sign Up</a>
+                <a class="item social" [routerLink]="['login']" *ngIf="!loggedIn" (click)="statusMenu()">Log In</a>
+                <a class="item social secondary" [routerLink]="['register']" *ngIf="!loggedIn" (click)="statusMenu()">Sign Up</a>
 
 
 

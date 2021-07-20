@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user';
 import { Router } from '@angular/router';
+import { global } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-login',
@@ -14,13 +15,14 @@ export class LoginComponent implements OnInit, OnDestroy {
   public user: User;
   public user_data: any;
   public token: any;
+  public clientSecret: any;
 
   constructor(
     private _userService: UserService,
     private _router: Router
   ) {
     this.user = new User(1, '', '', '', '',2)
-
+    this.clientSecret=global.clientSecret
   }
 
   ngOnInit(): void {
@@ -36,7 +38,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     this.user_data = {
       grant_type: 'password',
       client_id: 2,
-      client_secret: 'CnmUKWB7A6l0JeKVZIOrOYwWb4e7FFUEYkJjdkj0',
+      client_secret: this.clientSecret,
       scope: '*',
       username: this.user.email,
       password: this.user.password

@@ -11,7 +11,7 @@
         <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" placeholder="nombre" class="field-form"
             required>
 
-        <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+        <small *ngIf="!name.valid && name.touched" class="alert padmar alert-danger">
             El nombre no es valido
         </small>
 
@@ -19,7 +19,7 @@
         <input type="text" name="email" #email="ngModel" [(ngModel)]="user.email" placeholder="email" class="field-form"
             required>
 
-        <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
+        <small *ngIf="!email.valid && email.touched" class="alert padmar alert-danger">
             El email no es valido
         </small>
 
@@ -28,7 +28,7 @@
         <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password" placeholder="password"
             class="field-form" required>
 
-        <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">
+        <small *ngIf="!password.valid && password.touched" class="alert padmar alert-danger">
             La Contrasena no es valido
         </small>
 
