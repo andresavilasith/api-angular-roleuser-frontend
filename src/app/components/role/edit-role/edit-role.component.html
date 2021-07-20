@@ -1,6 +1,6 @@
 <div class="container">
     <form action="#" #editRoleForm="ngForm" (ngSubmit)="onSubmit(editRoleForm)" class="form-users">
-        <h2>Actualizar datos de perfil</h2>
+        <h2>Actualizar datos de rol de {{role.name}}</h2>
 
         <label for="name" class="label-title-form">Nombre:</label>
         <input type="text" placeholder="nombre" name="name" class="field-form" required #name="ngModel" [(ngModel)]="role.name">
@@ -47,7 +47,7 @@
 
 
             <div class="tab">
-                <input type="button" class="tablinks" (click)="getPositionTab(-1)" [ngStyle]="position_tab==-1 ? {'background': '#303335', 'color': '#ffae00'} : {'background': '#ffae00', 'color': '#303335'}" value="Permisos de {{role.name}}">
+                <input type="button" class="tablinks" (click)="getPositionTab(-1)" [ngStyle]="position_tab==-1 ? {'background': '#303335', 'color': '#ffae00'} : {'background': '#ffae00', 'color': '#303335'}" value="Permisos">
                 <input type="button" *ngFor="let category of categories ; index as i" class="tablinks"
                     (click)="getPositionTab(i)" [ngStyle]="position_tab==i ? {'background': '#303335', 'color': '#ffae00'} : {'background': '#ffae00', 'color': '#303335'}" value="{{category.name}}">
             </div>
