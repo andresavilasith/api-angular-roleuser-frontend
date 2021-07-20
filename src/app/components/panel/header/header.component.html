@@ -2,48 +2,48 @@
     <nav>
         <div class="menu" id="menu-panel">
 
-            <div class="item has-submenu" [ngStyle]="loggedIn && permissions_slug?.includes('user.index') ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn &&  resolution > 1200 && permissions_slug?.includes('user.index') ? {'display': 'block'} : {'display' : 'none'}" [ngStyle]="status_menu && permissions_slug?.includes('user.index') ? {'display': 'block'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Usuarios
                 </a>
                 <div class="submenu">
-                    <a class="subitem" [routerLink]="['user']">Lista de usuarios</a>
+                    <a class="subitem" [routerLink]="['user']" (click)="statusMenu()">Lista de usuarios</a>
 
                 </div>
             </div>
 
 
-            <div class="item has-submenu" [ngStyle]="loggedIn && permissions_slug?.includes('role.index') ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn && resolution > 1200 && permissions_slug?.includes('role.index') ? {'display': 'block'} : {'display' : 'none'}" [ngStyle]="status_menu && permissions_slug?.includes('role.index') ? {'display': 'block'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Roles
                 </a>
                 <div class="submenu">
-                    <a class="subitem" [routerLink]="['role']">Lista de roles</a>
-                    <a class="subitem" [routerLink]="['role-new']" [ngStyle]="loggedIn && permissions_slug?.includes('role.create') ? {'display': 'flex'} : {'display' : 'none'}">Crear rol</a>
+                    <a class="subitem" [routerLink]="['role']" (click)="statusMenu()">Lista de roles</a>
+                    <a class="subitem" [routerLink]="['role-new']" [ngStyle]="permissions_slug?.includes('role.create') ? {'display': 'block'} : {'display' : 'none'}" (click)="statusMenu()">Crear rol</a>
 
                 </div>
             </div>
 
 
-            <div class="item has-submenu" [ngStyle]="loggedIn && permissions_slug?.includes('category.index') ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn && resolution > 1200 && permissions_slug?.includes('category.index') ? {'display': 'block'} : {'display' : 'none'}" [ngStyle]="status_menu && permissions_slug?.includes('category.index') ? {'display': 'block'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Categorias
                 </a>
                 <div class="submenu">
-                    <a class="subitem" [routerLink]="['category']">Lista de categorias</a>
-                    <a class="subitem" [ngStyle]="loggedIn && permissions_slug?.includes('category.create') ? {'display': 'flex'} : {'display' : 'none'}" [routerLink]="['category-new']">Crear categoria</a>
+                    <a class="subitem" [routerLink]="['category']" (click)="statusMenu()">Lista de categorias</a>
+                    <a class="subitem" [routerLink]="['category-new']" [ngStyle]="permissions_slug?.includes('category.create') ? {'display': 'block'} : {'display' : 'none'}" (click)="statusMenu()">Crear categoria</a>
 
                 </div>
             </div>
 
 
-            <div class="item has-submenu" [ngStyle]="loggedIn && permissions_slug?.includes('permission.index') ? {'display': 'flex'} : {'display' : 'none'}">
+            <div class="item has-submenu" [ngStyle]="loggedIn && resolution > 1200 && permissions_slug?.includes('permission.index') ? {'display': 'block'} : {'display' : 'none'}" [ngStyle]="status_menu && permissions_slug?.includes('permission.index') ? {'display': 'block'} : {'display' : 'none'}">
                 <a class="linkuser">
                     Permisos
                 </a>
                 <div class="submenu">
-                    <a class="subitem" [routerLink]="['permission']">Lista de permisos</a>
-                    <a class="subitem" [routerLink]="['permission-new']" [ngStyle]="loggedIn && permissions_slug?.includes('permission.create') ? {'display': 'flex'} : {'display' : 'none'}">Crear permiso</a>
+                    <a class="subitem" [routerLink]="['permission']" (click)="statusMenu()">Lista de permisos</a>
+                    <a class="subitem" [routerLink]="['permission-new']" [ngStyle]="permissions_slug?.includes('permission.create') ? {'display': 'block'} : {'display' : 'none'}" (click)="statusMenu()">Crear permiso</a>
 
                 </div>
             </div>
@@ -51,17 +51,19 @@
 
             <div class="profileSession">
 
-                <a class="item social" [routerLink]="['login']" *ngIf="!loggedIn">Log In</a>
-                <a class="item social secondary" [routerLink]="['register']" *ngIf="!loggedIn">Sign Up</a>
+                <a class="item social" [routerLink]="['login']" *ngIf="!loggedIn && !permissions_slug" (click)="statusMenu()">Log In</a>
+                <a class="item social secondary" [routerLink]="['register']" *ngIf="!loggedIn && !permissions_slug" (click)="statusMenu()">Sign Up</a>
 
 
 
                 <div class="item has-submenu submenu-profile"
-                    [ngStyle]="loggedIn ? {'display': 'flex'} : {'display' : 'none'}">
+                    [ngStyle]="loggedIn && resolution > 1200 ? {'display': 'block'} : {'display' : 'none'}" [ngStyle]="status_menu ? {'display': 'block'} : {'display' : 'none'}">
 
 
                     <a class="linkuser">
-                        <img src="https://png.pngtree.com/png-vector/20190710/ourmid/pngtree-user-vector-avatar-png-image_1541962.jpg"
+                        <img *ngIf="!user?.img" src="https://uybor.uz/borless/uybor/img/user-images/user_no_photo_300x300.png"
+                            class="profilepic">
+                        <img *ngIf="user?.img" [src]="user_img+user?.img"
                             class="profilepic">
                         <div class="username">
                             {{user?.name}}
@@ -69,7 +71,7 @@
                         </div>
                     </a>
                     <div class="submenu">
-                        <a class="subitem" href="#" [ngStyle]="loggedIn && permissions_slug?.includes('userown.edit') ? {'display': 'flex'} : {'display' : 'none'}" [routerLink]="['/user-edit',user?.id]">Editar perfil</a>
+                        <a class="subitem" href="#" [ngStyle]="loggedIn && resolution > 1200 && permissions_slug?.includes('userown.edit') ? {'display': 'block'} : {'display' : 'none'}" [ngStyle]="permissions_slug?.includes('userown.edit') ? {'display': 'block'} : {'display' : 'none'}" [routerLink]="['/user-edit',user?.id]">Editar perfil</a>
                         <a class="subitem" (click)="logout()">Salir</a>
                     </div>
                 </div>
@@ -77,7 +79,7 @@
 
 
 
-            <a class="toggle" href="#">&#9776;</a>
+            <a class="toggle" (click)="statusMenu()">&#9776;</a>
         </div>
     </nav>
 </header>

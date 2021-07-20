@@ -5,14 +5,24 @@
         <label for="name" class="label-title-form">Nombre:</label>
         <input type="text" placeholder="nombre" name="name"  #name="ngModel" [(ngModel)]="permission.name" class="field-form" required>
 
+        <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+            El nombre no es valido
+        </small>
 
 
         <label class="label-title-form" for="slug">Slug:</label>
         <input type="text" class="field-form" placeholder="Slug"  #slug="ngModel" [(ngModel)]="permission.slug" required name="slug">
 
+        <small *ngIf="!slug.valid && slug.touched" class="invalid-feedback d-block">
+            El slug no es valido
+        </small>
 
-        <label class="label-title-form" for="description">Description:</label>
+
+        <label class="label-title-form" for="description">Descripcion:</label>
         <input type="text" class="field-form" placeholder="Description"  #description="ngModel" [(ngModel)]="permission.description" required name="description">
+        <small *ngIf="!description.valid && description.touched" class="invalid-feedback d-block">
+            La descripcion no es valida
+        </small>
 
 
         <label class="label-title-form" for="role">Categoria:</label>

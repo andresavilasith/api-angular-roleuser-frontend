@@ -43,8 +43,6 @@ export class EditRoleComponent implements OnInit {
       params => {
         this._roleService.editRole(params.id, this.token).subscribe(
           response => {
-            console.log(response);
-
 
             this._userService.logged(this.current_user);
             this.categories = response.categories;
@@ -106,6 +104,22 @@ export class EditRoleComponent implements OnInit {
         this.role.permissions = response.permissions
         this._router.navigate(['role']);
 
+        //Actualizar permisos en el template
+        this._userService.userPermissions(this.token).subscribe(
+          response => {
+
+            this.permissions = response.permissions;
+
+            this._userService.permissionUser(this.role.permissions);
+
+
+          },
+          error => {
+            console.log(error);
+
+          }
+        );
+
       },
       error => {
         console.log(error);
@@ -139,8 +153,6 @@ export class EditRoleComponent implements OnInit {
 
     }
 
-
-    console.log(this.selected_perm);
 
 
   }

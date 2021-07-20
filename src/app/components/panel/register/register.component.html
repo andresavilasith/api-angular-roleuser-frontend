@@ -1,6 +1,12 @@
 <div class="container">
     <form action="#" #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm) "class="form-users">
-
+        <div *ngIf="error_message" class="alert alert-warning field-form">
+            <p class="error-alert">{{error_message}}</p>
+        </div>
+        <div *ngIf="error_email" class="alert alert-danger field-form">
+            <p class="error-alert">{{error_email}}</p>
+        </div>
+        
         <label for="name" class="label-title-form">Nombre:</label>
         <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" placeholder="nombre" class="field-form"
             required>

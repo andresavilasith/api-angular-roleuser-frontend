@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
     private _userService: UserService,
     private _router: Router
   ) {
+    this.loggedIn=false
     this.token = this._userService.getToken()
   }
 
@@ -28,6 +29,8 @@ export class AppComponent implements OnInit {
     this._userService.isUserLogged().subscribe(
       result => {
         this.loggedIn = result
+        
+        ;
         this._userService.isUserCurrent().subscribe(
           result => {
             this.user = result

@@ -63,6 +63,7 @@ export class UsersComponent implements OnInit {
           error => {
             console.log(error);
             
+            this._router.navigate(['/'])
           }
         );
 

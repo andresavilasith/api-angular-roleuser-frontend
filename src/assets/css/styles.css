@@ -46,8 +46,7 @@
     background: var(--gray);
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
   }
   
   .menu>.profileSession{
@@ -64,7 +63,7 @@
     font-weight: var(--weightDefault);
     font-size: 40px;
     color: #ccc;
-    
+    cursor: pointer;
     margin-right: 1em;
   
   }
@@ -115,6 +114,7 @@
   width: 3em;
   margin-right: .5em;
   border-radius: 2em;
+  height: 3em;
   }
   .username{
   align-self: center;
@@ -138,6 +138,7 @@
   .has-submenu {
     font-weight: var(--weightDefault);
     font-size: 14px;
+    cursor: pointer;
   }
   .has-submenu > a::after {
     font-family: "Font Awesome 5 Free";
@@ -172,22 +173,19 @@
   .button.secondary {
     border-bottom: 1px var(--gray) solid;
   }
-  
-  /* -------------  Fin Menu  ----------------------- */
   #menu-panel{
     justify-content: flex-end;
   
   }
+  
+  /* -------------  Fin Menu  ----------------------- */
   /* -------------   Menu Panel ---------------------- */
   
 
   
   /* Desktop menu */
   @media all and (min-width: 1200px) {
-    #menu-panel{
-      justify-content: flex-start;
-    
-    }
+   
    
     nav>.menu{
   
@@ -210,6 +208,7 @@
       width: auto;
       font-size: 16px;
       order: 1;
+      cursor: pointer;
     }
   
     .item.social {
@@ -244,8 +243,9 @@
     }
   
     .profilepic{
-    width: 1.9em;
-    border-radius: 1em;
+      width: 2em;
+      border-radius: 1em;
+      height: 2em;
     }
   
     .submenu-active .submenu {
@@ -278,6 +278,7 @@
     
     .toggle {
       display: none;
+      cursor: pointer;
     }
     .submenu-active {
       border-radius: 0;
@@ -813,7 +814,8 @@
   }
   
   /* -------------------- Formulario de login - Registro - Contacto --------------- */
-  
+ 
+
   .container{
     display: flex;
     justify-content: center;
@@ -850,6 +852,8 @@
     padding: 1em;
     border-radius: .5em;
     font-size: 1em;
+    display: flex;
+    justify-content: center;
   }
   
   .field-search{
@@ -858,6 +862,12 @@
     border-radius: .5em;
     font-size: 1em;
 
+  }
+
+  .field-img{
+    width: 14em;
+    height: 13em;
+    border-radius: 11em;
   }
   .radio-form{
     display: flex;
@@ -1114,6 +1124,6 @@
   }
 
   .alert-danger{
-    color: var(--gray);
+    color: #ddd;
     background-color: #ff0800;
   }

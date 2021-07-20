@@ -8,7 +8,7 @@
         <small *ngIf="!email.valid && email.touched" class="invalid-feedback d-block">
             El email no es valido
         </small>
-        <label class="label-title" for="password">Conttrasena:</label>
+        <label class="label-title" for="password">Contraseña:</label>
         <input type="password" class="field-form" name="password" #password="ngModel" [(ngModel)]="user.password"  placeholder="Su contrasena" required>
 
         <small *ngIf="!password.valid && password.touched" class="invalid-feedback d-block">

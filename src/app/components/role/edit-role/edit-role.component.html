@@ -5,16 +5,27 @@
         <label for="name" class="label-title-form">Nombre:</label>
         <input type="text" placeholder="nombre" name="name" class="field-form" required #name="ngModel" [(ngModel)]="role.name">
 
+        <small *ngIf="!name.valid && name.touched" class="invalid-feedback d-block">
+            El nombre no es valido
+        </small>
 
 
         <label class="label-title-form" for="slug">Slug:</label>
         <input type="text" class="field-form" placeholder="Slug" required name="slug"
         #slug="ngModel" [(ngModel)]="role.slug">
+        <small *ngIf="!slug.valid && slug.touched" class="invalid-feedback d-block">
+            El slug no es valido
+        </small>
+
 
 
         <label class="label-title-form" for="description">Description:</label>
         <input type="text" class="field-form" placeholder="Description" required name="description"
         #description="ngModel" [(ngModel)]="role.description">
+        
+        <small *ngIf="!description.valid && description.touched" class="invalid-feedback d-block">
+            La descripcion no es valida
+        </small>
 
 
         

@@ -9,6 +9,7 @@ export class UserService {
     public url_auth: string;
     public url_auth_token: string;
     public url_panel: string;
+    public url_img: string;
     public token: any;
     public user: any;
     public user_storage: any;
@@ -26,6 +27,7 @@ export class UserService {
         this.url_auth = global.urlAuth;
         this.url_auth_token = global.urlAuthToken;
         this.url_panel = global.urlApiPanel;
+        this.url_img = global.urlApiUserImgPanel;
     }
 
 
@@ -71,6 +73,17 @@ export class UserService {
         var headers = new HttpHeaders().set('Authorization', token);
 
         return this._http.put(this.url_panel + '/user/' + id, user, { headers: headers });
+    }
+    uploadUserImg(id: number, img: any, token: any): Observable<any> {
+
+        var headers = new HttpHeaders().set('Authorization', token);
+        
+        return this._http.post(this.url_panel + '/user/upload/' + id, img, { headers: headers });
+    }
+    
+    getUserImg(filename:string){
+        
+        return this._http.get(this.url_img + filename);
     }
 
     deleteUser(id: number, token: any): Observable<any> {

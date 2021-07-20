@@ -12,13 +12,15 @@ export class RegisterComponent implements OnInit {
 
   public user: User;
   public page_title: string;
+  public error_message: any;
+  public error_email: any;
 
   constructor(
     private _userService: UserService,
-    private _router:Router
+    private _router: Router
   ) {
     this.page_title = 'User Register'
-    this.user = new User(1, '', '', '', '',2);
+    this.user = new User(1, '', '', '', '', 2);
   }
 
   ngOnInit(): void {
@@ -31,9 +33,12 @@ export class RegisterComponent implements OnInit {
         this._router.navigate(['/login']);
 
       },
-      error => {
-        console.log(error);
-
+      err => {
+        console.log(err);
+        this.error_message=err.error.message
+        console.log(this.error_message);
+        this.error_email=err.error.errors.email[0]
+        console.log(this.error_email);
       }
     )
   }
