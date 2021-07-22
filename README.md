@@ -8,7 +8,7 @@ https://nodejs.org/es/
 
 2. Clonar el repositorio
 
-```js
+```
 git clone https://github.com/andresaviladw/api-angular-roleuser-frontend.git
 ```
 
