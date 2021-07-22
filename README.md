@@ -34,7 +34,7 @@ export default swal;
 export as namespace swal;
 ```
 
-5 Entrar a src/app/services/ abrir el archivo global.service.ts y pegar la clave de accesso generado en el backend que se encuentra y se indica como obtener en: [Backend realizado en Laravel](https://github.com/andresaviladw/api-laravel-roleuser-backend/) 
+5. Entrar a src/app/services/ abrir el archivo global.service.ts y pegar la clave de accesso generado en el backend que se encuentra y se indica como obtener en: [Backend realizado en Laravel](https://github.com/andresaviladw/api-laravel-roleuser-backend/) 
 
 
 ```js
