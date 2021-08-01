@@ -1,27 +1,59 @@
-# Roleuserfrontend
+<p align="center"><a href="https://angular.io/" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/cf/Angular_full_color_logo.svg/1200px-Angular_full_color_logo.svg.png" width="300"></a></p>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.0.3.
+# Frontend - Angular 12 Sistema de roles y permisos
+## [Backend realizado en Laravel](https://github.com/andresaviladw/api-laravel-roleuser-backend/) 
 
-## Development server
+1. Descargar Nodejs en 
+https://nodejs.org/es/
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+2. Clonar el repositorio
 
-## Code scaffolding
+```
+git clone https://github.com/andresaviladw/api-angular-roleuser-frontend.git
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## Build
+3. Ejecutar 
+```js
+npm install
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+4. Para arreglar el error de sweetalert hay que entrar en `\node_modules\sweetalert\typings` en el archivo `sweetalert.d.ts` y borrar la linea: `const swal: SweetAlert;`
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Tiene que quedar asi: 
 
-## Running end-to-end tests
+```js
+import swal, { SweetAlert } from "./core";
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+declare global {
+  const sweetAlert: SweetAlert;
+}
 
-## Further help
+export default swal;
+export as namespace swal;
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+5. Entrar a src/app/services/ abrir el archivo global.service.ts y pegar la clave de accesso generado en el backend que se encuentra y se indica como obtener en: [Backend realizado en Laravel](https://github.com/andresaviladw/api-laravel-roleuser-backend/) 
+
+
+```js
+export var global={
+    clientSecret:'Escribir clave de acceso'
+}
+```
+
+
+- Por ejemplo 
+```js
+export var global={
+    clientSecret:'CnmUKWB7A6l0JeKVZIOrOYwWb4e7FFUEYkJjdkj0'
+}
+```
+
+6. Iniciar ejecucion 
+```js
+ng serve 
+```
+
+
