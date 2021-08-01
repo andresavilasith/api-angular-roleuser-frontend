@@ -77,12 +77,12 @@ export class UserService {
     uploadUserImg(id: number, img: any, token: any): Observable<any> {
 
         var headers = new HttpHeaders().set('Authorization', token);
-        
+
         return this._http.post(this.url_panel + '/user/upload/' + id, img, { headers: headers });
     }
-    
-    getUserImg(filename:string){
-        
+
+    getUserImg(filename: string) {
+
         return this._http.get(this.url_img + filename);
     }
 
@@ -125,8 +125,9 @@ export class UserService {
         this.currentUser.next(user);
     }
 
-    permissionUser(permissions:any):void{
+    permissionUser(permissions: any): void {
 
+        this.permissions_slug = [];
         for (let perm of permissions) {
             this.permissions_slug.push(perm.slug);
             this.permissionsUser
@@ -164,6 +165,6 @@ export class UserService {
 
     }
 
-    
+
 
 }

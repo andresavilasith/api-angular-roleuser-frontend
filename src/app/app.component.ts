@@ -37,7 +37,9 @@ export class AppComponent implements OnInit {
 
             this._userService.isUserPermission().subscribe(
               response => {
+                
                 this.permissions_slug = response;
+                
                 
               },
               error => {

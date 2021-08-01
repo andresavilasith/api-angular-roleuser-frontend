@@ -17,31 +17,32 @@ export class HeaderComponent implements OnInit {
   @Input() user: any;
   @Input() token: any;
   @Input() permissions_slug: any;
-  public user_img:string;
-  public resolution:number;
-  public status_menu:boolean;
-  
+  public user_img: string;
+  public resolution: number;
+  public status_menu: boolean;
+  public permissions: any;
+
 
   constructor(
     private _userService: UserService,
     private _router: Router
   ) {
-   
-      this.user_img=global.urlApiUserImgPanel;
-    
-    this.resolution=window.innerWidth
-    this.status_menu=false;
+
+    this.user_img = global.urlApiUserImgPanel;
+
+    this.resolution = window.innerWidth
+    this.status_menu = false;
   }
 
   ngOnInit(): void {
-    
+
   }
 
   //Evento similar a addEventListener de JS 
   //Obtener resolucion de pantalla
   @HostListener('window:resize', ['$event'])
-  onResize(event:any) {
-    this.resolution = window.innerWidth; 
+  onResize(event: any) {
+    this.resolution = window.innerWidth;
   }
 
   logout(): void {
@@ -50,15 +51,15 @@ export class HeaderComponent implements OnInit {
     this._router.navigate(['/login'])
   }
 
-  statusMenu(){
-    if(this.status_menu || this.resolution >1200){
-      this.status_menu=false;
-    }else{
-      
-      this.status_menu=true;
+  statusMenu() {
+    if (this.status_menu || this.resolution > 1200) {
+      this.status_menu = false;
+    } else {
+
+      this.status_menu = true;
     }
 
-    
+
   }
 
 }
