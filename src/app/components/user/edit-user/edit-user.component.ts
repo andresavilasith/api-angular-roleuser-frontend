@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
-import { DomSanitizer } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-edit-user',
@@ -30,7 +29,6 @@ export class EditUserComponent implements OnInit {
     private _userService: UserService,
     private _route: ActivatedRoute,
     private _router: Router,
-    private sanitizer: DomSanitizer
   ) {
     this.current_user = this._userService.getCurrentUser();
     this.token = this._userService.getToken();
@@ -91,29 +89,7 @@ export class EditUserComponent implements OnInit {
     )
   }
 
-  extractBase64 = async ($event: any) =>
-    new Promise(resolve => {
-      try {
-        const unsafeImg = window.URL.createObjectURL($event);
-        const image = this.sanitizer.bypassSecurityTrustUrl(unsafeImg);
-        const reader = new FileReader();
-        reader.readAsDataURL($event);
-        reader.onload = () => {
-          resolve({
-            base: reader.result
-          });
-        };
-      } catch (e) {
-        return null;
-      }
-      return $event;
-    });
-
-
-
   onSubmit(form: any) {
-
-
     //Asignacion de role si no hay cambios
     this.user.roles = form.value.roles
 
