@@ -3,7 +3,6 @@ import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/models/user';
 import { DomSanitizer } from '@angular/platform-browser';
-import { global } from 'src/app/services/global.service';
 
 @Component({
   selector: 'app-edit-user',
@@ -23,7 +22,6 @@ export class EditUserComponent implements OnInit {
   public role_user: any
   public files: any = []
   public loading: boolean = false;
-  public user_img: any;
 
 
   public permissions: any
