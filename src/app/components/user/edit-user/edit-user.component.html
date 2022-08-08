@@ -18,22 +18,6 @@
                 El email no es valido
             </small>
 
-        <label class="label-title-form" for="img">Imagen:</label>
-        <input type="file" class="field-form" (change)="getFile($event)" name="img">
-
-        <div class="field-form" *ngIf="!preview && user.img!=null">
-            <img [src]="user_img" width="50" class="field-img">
-        </div>
-        
-        <div class="field-form" *ngIf="!user.img && !preview">
-            <img src="https://uybor.uz/borless/uybor/img/user-images/user_no_photo_300x300.png" class="field-img">
-        </div>
-
-
-        <div class="field-form" *ngIf="preview">
-            <img [src]="preview" class="field-img">
-        </div>
-
 
         <label class="label-title-form" for="role">Rol:</label>
 

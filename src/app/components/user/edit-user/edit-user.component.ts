@@ -39,16 +39,16 @@ export class EditUserComponent implements OnInit {
     this.title = "Datos de usuario";
 
     this.user = new User(1, '', '', '', '', '')
-    
+
   }
-  
-  
-  
+
+
+
   ngOnInit(): void {
     this.editUser()
 
   }
-  
+
   editUser() {
     this._route.params.subscribe(
       params => {
@@ -56,8 +56,6 @@ export class EditUserComponent implements OnInit {
           response => {
             this._userService.logged(this.current_user);
             this.user = response.user
-            
-            this.user_img = global.urlApiUserImgPanel+this.user.img;
             //Todos los roles
             this.roles_info = response.roles
 
@@ -126,37 +124,7 @@ export class EditUserComponent implements OnInit {
       response => {
         this.user = response.user
         this.modifyCurrentUser(this.user);
-
-        //
-        try {
-          this.loading = true;
-          const formData = new FormData();
-          this.files.forEach((file: any) => {
-            formData.append('img', file);
-            this.loading = false;
-
-            if (formData) {
-
-              this._userService.uploadUserImg(this.user.id, formData, this.token).subscribe(
-                response => {
-                  this.user.img = response.data.img
-                  this.modifyCurrentUser(this.user);
-                },
-                error => {
-                  console.log(error);
-
-                }
-              );
-            } 
-            
-          })
-
-        } catch (error) {
-          this.loading = false;
-        }
         this._router.navigate(['user']);
-
-
       },
       error => {
         console.log(error);
@@ -164,11 +132,6 @@ export class EditUserComponent implements OnInit {
 
       }
     );
-
-
-
-
-
 
   }
 
@@ -181,20 +144,5 @@ export class EditUserComponent implements OnInit {
       this._userService.logged(this.current_user)
     }
   }
-
-
-  getFile(event: any) {
-    const imageFile = event.target.files[0];
-    this.files.push(imageFile);
-
-    this.extractBase64(imageFile).then((imagen: any) => {
-      this.preview = imagen.base;
-    });
-    this.files.push(imageFile);
-
-  }
-
-
-
 
 }

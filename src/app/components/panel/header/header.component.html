@@ -56,15 +56,11 @@
 
 
 
-                <div class="item has-submenu submenu-profile"
+                <div class="item has-submenu"
                     [ngStyle]="loggedIn && resolution > 1200 ? {'display': 'block'} : {'display' : 'none'}" [ngStyle]="status_menu ? {'display': 'block'} : {'display' : 'none'}">
 
 
                     <a class="linkuser">
-                        <img *ngIf="!user?.img" src="https://uybor.uz/borless/uybor/img/user-images/user_no_photo_300x300.png"
-                            class="profilepic">
-                        <img *ngIf="user?.img" [src]="user_img+user?.img"
-                            class="profilepic">
                         <div class="username">
                             {{user?.name}}
 

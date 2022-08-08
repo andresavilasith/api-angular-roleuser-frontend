@@ -17,7 +17,6 @@ export class HeaderComponent implements OnInit {
   @Input() user: any;
   @Input() token: any;
   @Input() permissions_slug: any;
-  public user_img: string;
   public resolution: number;
   public status_menu: boolean;
   public permissions: any;
@@ -27,9 +26,6 @@ export class HeaderComponent implements OnInit {
     private _userService: UserService,
     private _router: Router
   ) {
-
-    this.user_img = global.urlApiUserImgPanel;
-
     this.resolution = window.innerWidth
     this.status_menu = false;
   }
